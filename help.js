@@ -12,10 +12,10 @@ function closePage(){
 
 function sweepVerts(dir, next){
   //fullSweep(banners, dir, .06, .002, next);
-  banners.sweep(dir, next);
+  banners.toggle(dir, next);
 }
 
 function sweepPage(dir, next){
   //fullSweep(page, dir, .04, .002, next);
-  page.sweep(dir, next);
+  page.toggle(dir, next);
 }

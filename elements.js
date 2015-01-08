@@ -37,7 +37,8 @@ function Banners(display){
 
   this.resize = function(x) { headpos(x); tailpos(x); };
 
-  this.sweep = fullSweep(.06, .002);
+  this.sweep = sweep(1);
+  this.toggle = fullSweep(.06, .002);
 
   this.resize(display ? 1 : 0);
 }
@@ -52,7 +53,8 @@ function FullPage(page, display){
   var f = fade(page);
 
   this.resize = function(x) { c(x); s(x); f(x); };
-  this.sweep = fullSweep(.04, .002);
+  this.sweep = sweep(0);
+  this.toggle = fullSweep(.04, .002);
 
   this.resize(display ? 1 : 0);
 }

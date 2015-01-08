@@ -1,0 +1,50 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="sitestyle.css">
+<link rel="stylesheet" type="text/css" href="page.css">
+<link href='http://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+</head>
+<body onload="stp();" onclick="(vertstate ? openPage() : closePage()); vertstate = !vertstate">
+  <div id="sketchpad"></div>
+  <div id="foreground">
+    <div class="bar" id="header">
+      <span class="centertext" id="title">INSIGHT</span>
+    </div>
+    <div id="bulk">
+      <div id="page">
+        <div id="borderbox"></div>
+        <div id="content">
+          <div id="pagehead">GEOMETRIES</div>
+          <div id="images"><img id="imageholder" src="tris/1.png" /></div>
+          <div id="leftbar" onclick="changeImage(false)" class="sidebar">&#10092;</div>
+          <div id="rightbar" onclick="changeImage(true);" class="sidebar">&#10093;</div>
+          <div id="text">
+             All the above shapes are created using a very simple algorithm. It starts with one large triangle, the outline
+             of the shape you see above. Then it randomly selects one of 2-5 predefined ways of dividing the triangle into
+             a number of smaller shapes. These shapes may be smaller equilateral triangles, hexagons, isoceles triangles, or
+             rhombus, and each of these shapes has itself 2-5 predefined ways of being divided into smaller shapes. After the
+             first triangle is divided, each of smaller component shapes is divided, and each of those components is divided,
+             and so on, usually 7-12 layers deep.
+             <br/>
+             When I first this up, I was amazed by the results. I think it's very interesting how such a simple algorithm can
+             produce such intricate and unique designs. 
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bar" id="footer">
+      <span class="centertext" id="name">MICHAEL JENNINGS</span>
+    </div>
+  </div>
+  <script src="transitions.js"></script>
+  <script src="elements.js"></script>
+  <script src="setup.js"></script>
+  <script src="element.js"></script>
+  <script src="help.js"></script>
+  <script src="images.js"></script>
+  <script src="partial.js"></script>
+  <script src="../p5.js"></script>
+  <script src="arc.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>

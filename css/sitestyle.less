@@ -1,0 +1,38 @@
+@import (reference) "general.less";
+@import "menu.less";
+@import "bars.less";
+@import "page.less";
+
+#foreground {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#sketchpad {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+#bulkstripe {
+  width: 100%;
+  height: 60%;
+  top: 20%;
+  position: absolute;
+}
+
+#defaultCanvas {
+  position: absolute;
+  top: 0;
+}
+
+html, body {
+  overflow: hidden;
+  font-family: 'Oswald', sans-serif;
+  background-color: #FFFFFF;
+  margin: 0px;
+  padding: 0px;
+}

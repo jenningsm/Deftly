@@ -8,7 +8,7 @@ function sequence(functions){
 
 function fullSweep(maxSpeed, accel){
   return function(dir, next){
-    this.sweep((dir ? 1 : 0), (dir ? maxSpeed : 0), (dir ? 0 : maxSpeed), maxSpeed, accel, accel, next);
+      this.sweep((dir ? 1 : 0), (dir ? maxSpeed : 0), (dir ? 0 : maxSpeed), maxSpeed, accel, accel, next);
   }
 }
 
@@ -55,6 +55,8 @@ function sweepUtil(element, dir, stop, maxSpeed, accel, decel, currentPos, curre
     setTimeout(sweepUtil, 30, element, dir, stop, maxSpeed, accel, decel, currentPos, currentSpeed, slowat, next);
   } else {
     element.resize(stop);
-    next();
+    if(next !== undefined){
+      next();
+    }
   }
 }

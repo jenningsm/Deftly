@@ -37,7 +37,7 @@ function Banners(display){
 
   this.resize = function(x) { headpos(x); tailpos(x); };
 
-  this.sweep = sweep(1);
+  this.sweep = sweep(display ? 1 : 0);
   this.toggle = fullSweep(.06, .002);
 
   this.resize(display ? 1 : 0);
@@ -53,8 +53,24 @@ function FullPage(page, display){
   var f = fade(page);
 
   this.resize = function(x) { c(x); s(x); f(x); };
-  this.sweep = sweep(0);
+  this.sweep = sweep(display ? 1 : 0);
   this.toggle = fullSweep(.04, .002);
+
+  this.resize(display ? 1 : 0);
+}
+
+function MenuBar(display){
+  var bar = document.getElementById("menubar");
+  var border = document.getElementById("menuborder");
+  console.log(bar.offsetHeight + " " + border.offsetHeight);
+  var c = clip(bar, false, bar.offsetWidth, bar.offsetHeight);
+  var s = scaleBorder(border, false);
+
+  this.resize = function(x) { s(x); c(x); };
+
+
+  this.sweep = sweep(display ? 1 : 0);
+  this.toggle = fullSweep(.12, .008);
 
   this.resize(display ? 1 : 0);
 }

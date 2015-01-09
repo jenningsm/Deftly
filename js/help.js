@@ -2,7 +2,7 @@
 var vertstate = true;
 
 function openPage(){
-  sequence([partial(sweepVerts, false), partial(sweepPage, true)]);
+  sequence([partial(sweepMenu, false), partial(sweepVerts, false), partial(sweepPage, true)]);
 }
 
 function closePage(){
@@ -13,6 +13,12 @@ function closePage(){
 function sweepVerts(dir, next){
   //fullSweep(banners, dir, .06, .002, next);
   banners.toggle(dir, next);
+  if(dir)
+    sweepMenu(dir);
+}
+
+function sweepMenu(dir, next){
+  menu.toggle(dir, next);
 }
 
 function sweepPage(dir, next){

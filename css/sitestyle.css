@@ -1,0 +1,214 @@
+#menubar {
+  position: absolute;
+  width: 100%;
+  height: 8.5%;
+  top: 14%;
+  background-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+#menuborder {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  pointer-events: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  z-index: 10;
+  border-top: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+#menutext {
+  font-size: 1.2em;
+  color: #202020;
+  width: 50%;
+  left: 25%;
+  height: 100%;
+  position: relative;
+  text-align: center;
+  display: table;
+}
+#menutext span {
+  cursor: pointer;
+  cursor: hand;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  display: table-cell;
+  width: 20%;
+  vertical-align: middle;
+  position: relative;
+}
+#menuline {
+  position: absolute;
+  background-color: #808080;
+  opacity: .2;
+  top: 35%;
+  height: 30%;
+  width: 100%;
+  z-index: 1;
+}
+#header {
+  position: absolute;
+  border-bottom: 3px solid black;
+}
+#footer {
+  border-top: 3px solid black;
+  position: absolute;
+  bottom: 0px;
+}
+.bar {
+  background-color: #FFFFFF;
+  width: 100%;
+  height: 20%;
+  z-index: 10;
+}
+#title {
+  text-shadow: 0 0 0 transparent, 0em 0em .05em #A0A0A0;
+  font-size: 4.9em;
+  line-height: .9em;
+  letter-spacing: .15em;
+  bottom: .2em;
+}
+#name {
+  text-shadow: 0em 0em .15em #8F8F8F;
+  font-size: 1.7em;
+  top: .12em;
+  letter-spacing: .03em;
+}
+.centertext {
+  cursor: default;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  font-weight: 300;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+}
+#borderbox {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  pointer-events: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  z-index: 6;
+  border-right: 3px solid #808080;
+  border-left: 3px solid #808080;
+}
+#content {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  text-align: center;
+  position: absolute;
+  left: 0%;
+  z-index: 5;
+}
+#page {
+  position: absolute;
+  height: 100%;
+  width: 70%;
+  left: 15%;
+}
+#imageholder {
+  max-height: 100%;
+  width: auto;
+}
+#leftbar {
+  left: 0%;
+}
+#rightbar {
+  right: 0%;
+}
+.sidebar {
+  cursor: pointer;
+  cursor: hand;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  z-index: 5;
+  position: absolute;
+  top: 0%;
+  height: 100%;
+  width: 10%;
+  font-size: 4em;
+  text-shadow: 0 0 2px #FFFFFF;
+  color: #808080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#pagehead {
+  cursor: default;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  font-size: 2.5em;
+  height: 10%;
+  position: relative;
+  top: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+#images {
+  position: absolute;
+  top: 7.5%;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  overflow: hidden;
+}
+#text {
+  display: none;
+  position: absolute;
+  bottom: 20px;
+  width: 80%;
+  left: 10%;
+  z-index: 5;
+}
+#foreground {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+#sketchpad {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+#bulkstripe {
+  width: 100%;
+  height: 60%;
+  top: 20%;
+  position: absolute;
+}
+#defaultCanvas {
+  position: absolute;
+  top: 0;
+}
+html,
+body {
+  overflow: hidden;
+  font-family: 'Oswald', sans-serif;
+  background-color: #FFFFFF;
+  margin: 0px;
+  padding: 0px;
+}

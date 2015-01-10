@@ -62,7 +62,6 @@ function FullPage(page, display){
 function MenuBar(display){
   var bar = document.getElementById("menubar");
   var border = document.getElementById("menuborder");
-  console.log(bar.offsetHeight + " " + border.offsetHeight);
   var c = clip(bar, false, bar.offsetWidth, bar.offsetHeight);
   var s = scaleBorder(border, false);
 

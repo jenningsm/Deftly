@@ -1,5 +1,4 @@
 
-var display = new DisplayCanvas(false);
 var banners = new Banners(true);
 var page = new FullPage("content", false);
 var menu = new MenuBar(false);

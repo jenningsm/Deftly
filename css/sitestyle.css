@@ -230,12 +230,16 @@
   position: absolute;
   top: 0;
 }
-#displayCanvas {
+#displayframe {
   position: absolute;
   width: 100%;
-  height: 80%;
-  display: none;
-  top: 10%;
+  height: 100%;
+}
+#sketchspot {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
 }
 html,
 body {

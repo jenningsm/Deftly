@@ -1,4 +1,7 @@
 
+var timestep = 10;
+var timemult = timestep / 30;
+
 function sequence(functions){
   if(functions.length != 0){
     functions[0](partial(sequence, functions.slice(1)));
@@ -40,19 +43,19 @@ function sweepUtil(element, dir, stop, maxSpeed, accel, decel, currentPos, curre
   var mult = (dir ? 1 : -1);
   if(currentPos * mult < stop * mult){
     element.resize(currentPos);
-    currentPos += currentSpeed * (dir ? 1 : -1);
+    currentPos += currentSpeed * (dir ? 1 : -1) * timemult;
     if(currentPos * mult < slowat * mult){
       if(Math.abs(currentSpeed) < maxSpeed){
-        currentSpeed += accel;
+        currentSpeed += accel * timemult;
       }
     } else {
-      currentSpeed -= decel;
+      currentSpeed -= decel * timemult;
       if(currentSpeed < 0){
         currentSpeed = 0;
         currentPos = stop;
       }
     }
-    setTimeout(sweepUtil, 30, element, dir, stop, maxSpeed, accel, decel, currentPos, currentSpeed, slowat, next);
+    setTimeout(sweepUtil, timestep, element, dir, stop, maxSpeed, accel, decel, currentPos, currentSpeed, slowat, next);
   } else {
     element.resize(stop);
     if(next !== undefined){

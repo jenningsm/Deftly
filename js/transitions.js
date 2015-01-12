@@ -1,5 +1,5 @@
 
-var timestep = 10;
+var timestep = 17;
 var timemult = timestep / 30;
 
 function sequence(functions){

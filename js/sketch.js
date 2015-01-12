@@ -35,24 +35,5 @@ function setup(){
     arcs[i].draw();
   }
   
-  /*noStroke();
-  fill(255, 0, 0, 128);
-  ellipseMode(RADIUS);
-  var pad = document.getElementById("sketchpad");
-  var width = pad.clientWidth;
-  var height = pad.clientHeight;
-  var c = 45;
-  ellipse(width / 2, height / 2, width / (c * standard), width / (c * standard));
-  */
 }
 
-function  draw(){
-//  background(base, base, base + 10);
-  var len = arcs.length;
-  for(var i = 0; i < len; i++){
-//    arcs[i].rotate();
-  }
-  for(var i = 0; i < len; i++){
-//    arcs[i].draw();
-  }
-}

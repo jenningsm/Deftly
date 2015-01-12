@@ -46,16 +46,20 @@ function Banners(display){
 function DisplayCanvas(display){
 
   this.toggle = function(dir, next){
-    var spot = document.getElementById("sketchspot"); 
-    spot.style.display = "inline";
-    var iframe = document.createElement("iframe");
-    var isrc = document.createAttribute("src");
-    isrc.value = "../uncontext1.html";
-    var frameid = document.createAttribute("id");
-    frameid.value = "displayframe";
-    iframe.setAttributeNode(isrc);
-    iframe.setAttributeNode(frameid);
-    spot.appendChild(iframe);
+    if(dir){
+      var spot = document.getElementById("sketchspot"); 
+      spot.style.display = "inline";
+      var iframe = document.createElement("iframe");
+      var isrc = document.createAttribute("src");
+      isrc.value = "../uncontext1.html";
+      var frameid = document.createAttribute("id");
+      frameid.value = "displayframe";
+      iframe.setAttributeNode(isrc);
+      iframe.setAttributeNode(frameid);
+      spot.appendChild(iframe);
+    } else {
+      document.getElementById("sketchspot").removeChild(document.getElementById("displayframe"));
+    }
   }
 }
 

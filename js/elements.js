@@ -9,7 +9,7 @@ function clip(element, orientation, width, height){
   }
 }
 
-function fade(element){
+function sidefade(element){
   return function(x){
     element.style.opacity = x * 1.5;
   }
@@ -38,7 +38,15 @@ function Banners(display){
   this.resize = function(x) { headpos(x); tailpos(x); };
 
   this.sweep = sweep(display ? 1 : 0);
-  this.toggle = fullSweep(.06, .002);
+  this.toggle = fullSweep(.09, .0045);
+
+   var header = document.getElementById("header");
+
+  this.setOpacity = function(x) {
+     header.style.opacity = x;
+  }
+
+  this.fade = fade(this, 1000) ;
 
   this.resize(display ? 1 : 0);
 }
@@ -70,11 +78,11 @@ function FullPage(page, display){
   
   var c = clip(page, true, page.offsetWidth, page.offsetHeight);
   var s = scaleBorder(border, true);
-  var f = fade(page);
+  var f = sidefade(page);
 
   this.resize = function(x) { c(x); s(x); f(x); };
   this.sweep = sweep(display ? 1 : 0);
-  this.toggle = fullSweep(.04, .002);
+  this.toggle = fullSweep(.05, .003);
 
   this.resize(display ? 1 : 0);
 }
@@ -89,7 +97,7 @@ function MenuBar(display){
 
 
   this.sweep = sweep(display ? 1 : 0);
-  this.toggle = fullSweep(.12, .008);
+  this.toggle = fullSweep(.18, .02);
 
   this.resize(display ? 1 : 0);
 }

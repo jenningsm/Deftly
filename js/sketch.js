@@ -34,6 +34,14 @@ function setup(){
     arcs.push(new Arc(Math.PI / 4 + Math.random() - .5, Math.random() * 2 * PI, radWidth, rad, .002 + (Math.random() - .5) / 25, colors));
     arcs[i].draw();
   }
+
+  noLoop();
+
+/*  var pcanvas = document.getElementById("defaultCanvas");
+  var imgdata = pcanvas.getContext("2d").getImageData(0, 0, pcanvas.width, pcanvas.height);
+  document.getElementById("backcanvas").getContext("2d").putImageData(imgdata, 0, 0);
+  noCanvas();*/
+  //document.getElementById("sketchpad").removeChild(document.getElementById("defaultCanvas"));
   
 }
 

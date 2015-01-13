@@ -1,16 +1,13 @@
-title font scaling
 moving between url states
-//organic asynchronous transitions
-reorganize html
+//reorganize html
 handling multiple pages
 back button
 double clicking
-consistent z-indexing
+//consistent z-indexing
 
 px vs % in scaling
 scaling font sizes
 
-//handling css properties
 generalizing mechanics
 
 opacity changes independent of position

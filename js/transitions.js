@@ -42,11 +42,10 @@ function sweep(start){
 function sweepUtil(element, dir, stop, maxSpeed, accel, decel, currentPos, currentSpeed, slowat, next){
   var mult = (dir ? 1 : -1);
   if(currentPos * mult < stop * mult){
-    element.resize(currentPos);
-    currentPos += currentSpeed * (dir ? 1 : -1) * timemult;
     if(currentPos * mult < slowat * mult){
-      if(Math.abs(currentSpeed) < maxSpeed){
+      if(currentSpeed < maxSpeed){
         currentSpeed += accel * timemult;
+        currentSpeed = Math.min(currentSpeed, maxSpeed);
       }
     } else {
       currentSpeed -= decel * timemult;
@@ -55,6 +54,8 @@ function sweepUtil(element, dir, stop, maxSpeed, accel, decel, currentPos, curre
         currentPos = stop;
       }
     }
+    element.resize(currentPos);
+    currentPos += currentSpeed * (dir ? 1 : -1) * timemult;
     setTimeout(sweepUtil, timestep, element, dir, stop, maxSpeed, accel, decel, currentPos, currentSpeed, slowat, next);
   } else {
     element.resize(stop);
@@ -62,4 +63,23 @@ function sweepUtil(element, dir, stop, maxSpeed, accel, decel, currentPos, curre
       next();
     }
   }
+}
+
+function fade(element, total){
+   return function(dir){
+     fadeUtil(element, total, dir)(0);
+   }
+}
+
+function fadeUtil(element, total, dir){
+  return (function rec(current){
+    if(current <= total){
+      element.setOpacity((dir ? current : total - current) / total);
+      console.log(dir ? current : total - current);
+      console.log(total);
+      setTimeout(rec, timestep, current + timestep);
+    } else {
+      element.setOpacity(dir ? 1 : 0);
+    }
+  });
 }

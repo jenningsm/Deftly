@@ -97,7 +97,7 @@ function MenuBar(display){
 
 
   this.sweep = sweep(display ? 1 : 0);
-  this.toggle = fullSweep(.18, .02);
+  this.toggle = fullSweep(.12, .008);
 
   this.resize(display ? 1 : 0);
 }

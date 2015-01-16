@@ -1,54 +1,11 @@
 
-function clip(element, orientation, width, height){
-  return function(x) {
-     var left = (orientation ? width * (1 - x) / 2 : 0);
-     var right = (orientation ? width * x + left : width);
-     var tp = (orientation ? 0 : height * (1 - x) / 2);
-     var bottom = (orientation ? height : height * x + tp);
-     element.style.clip = "rect(" + tp + "px, " + right + "px, " + bottom + "px, " + left + ")";
-  }
-}
-
-function sidefade(element){
-  return function(x){
-    element.style.opacity = x * 1.5;
-  }
-}
-
-function scaleBorder(border, orientation){
-  return function(x) {
-     border.style.transform = "scale(" + (orientation ? x : 1) + ", " + (orientation ? 1 : x) + ")";
-  }
-}
-
-function shift(element, shiftdir, orientation){
-   return function(x) {
-     var shift = (((1 - x) * 100) * (shiftdir ? -1 : 1));
-     element.style.transform = "translate(" + (orientation ? "0%" : shift + "%") + ", " + (orientation ? shift + "%" : "0%") + ")";
-   }
-}
-
-/*--------------------------------------------------------------------------------------------*/
-
-function Banners(display){
-
+function banners(display){
   var headpos = shift(document.getElementById("header"), true, true);
   var tailpos = shift(document.getElementById("footer"), false, true);
 
-  this.resize = function(x) { headpos(x); tailpos(x); };
-
-  this.sweep = sweep(display ? 1 : 0);
-  this.toggle = fullSweep(.09, .0045);
-
-   var header = document.getElementById("header");
-
-  this.setOpacity = function(x) {
-     header.style.opacity = x;
-  }
-
-  this.fade = fade(this, 1000) ;
-
-  this.resize(display ? 1 : 0);
+  var ret = function(x) { headpos(x); tailpos(x); };
+  ret(display ? 1 : 0);
+  return ret;
 }
 
 function DisplayCanvas(display){
@@ -71,7 +28,7 @@ function DisplayCanvas(display){
   }
 }
 
-function FullPage(page, display){
+function fullPage(page, display){
 
   var page  = document.getElementById(page);
   var border  = document.getElementById("borderbox");
@@ -80,24 +37,19 @@ function FullPage(page, display){
   var s = scaleBorder(border, true);
   var f = sidefade(page);
 
-  this.resize = function(x) { c(x); s(x); f(x); };
-  this.sweep = sweep(display ? 1 : 0);
-  this.toggle = fullSweep(.05, .003);
+  var ret = function(x) { c(x); s(x); f(x); };
+  ret(display ? 1 : 0);
+  return ret;
 
-  this.resize(display ? 1 : 0);
 }
 
-function MenuBar(display){
+function menuBar(display){
   var bar = document.getElementById("menubar");
   var border = document.getElementById("menuborder");
   var c = clip(bar, false, bar.offsetWidth, bar.offsetHeight);
   var s = scaleBorder(border, false);
 
-  this.resize = function(x) { s(x); c(x); };
-
-
-  this.sweep = sweep(display ? 1 : 0);
-  this.toggle = fullSweep(.12, .008);
-
-  this.resize(display ? 1 : 0);
+  var ret = function(x) { s(x); c(x); };
+  ret(display ? 1 : 0);
+  return ret;
 }

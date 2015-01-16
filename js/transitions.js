@@ -9,14 +9,14 @@ function sequence(functions){
 }
 
 
-function fullSweep(maxSpeed, accel){
+function fullSweep(swp, maxSpeed, accel){
   return function(dir, next){
-      this.sweep((dir ? 1 : 0), (dir ? maxSpeed : 0), (dir ? 0 : maxSpeed), maxSpeed, accel, accel, next);
+      swp((dir ? 1 : 0), (dir ? maxSpeed : 0), (dir ? 0 : maxSpeed), maxSpeed, accel, accel, next);
   }
 }
 
-function sweep(start){
-  return function(stop, startSpeed, stopSpeed, maxSpeed, accel, decel, next){
+function sweep(resize, start){
+  return (function two(stop, startSpeed, stopSpeed, maxSpeed, accel, decel, next){
     var slowat;
     if(decel === 0){
       slowat = stop;
@@ -34,49 +34,49 @@ function sweep(start){
       console.log(decel);
       //slowat = altslow;
     }*/
-    sweepUtil(this, (start < stop ? true : false), stop, maxSpeed, accel, decel, start, (accel === 0 ? maxSpeed : startSpeed), slowat, next);
-    this.sweep = sweep(stop);
-  }
+    sweepUtil(resize, (start < stop ? true : false), stop, maxSpeed, accel, decel, slowat, next)(start, (accel === 0 ? maxSpeed : startSpeed));
+    start = stop;
+  });
 }
 
-function sweepUtil(element, dir, stop, maxSpeed, accel, decel, currentPos, currentSpeed, slowat, next){
-  var mult = (dir ? 1 : -1);
-  if(currentPos * mult < stop * mult){
-    if(currentPos * mult < slowat * mult){
-      if(currentSpeed < maxSpeed){
-        currentSpeed += accel * timemult;
-        currentSpeed = Math.min(currentSpeed, maxSpeed);
+function sweepUtil(resize, dir, stop, maxSpeed, accel, decel, slowat, next){
+  return (function rec(currentPos, currentSpeed){  
+    var mult = (dir ? 1 : -1);
+    if(currentPos * mult < stop * mult){
+      if(currentPos * mult < slowat * mult){
+        if(currentSpeed < maxSpeed){
+          currentSpeed += accel * timemult;
+          currentSpeed = Math.min(currentSpeed, maxSpeed);
+        }
+      } else {
+        currentSpeed -= decel * timemult;
+        if(currentSpeed < 0){
+          currentSpeed = 0;
+          currentPos = stop;
+        }
       }
+      resize(currentPos);
+      currentPos += currentSpeed * (dir ? 1 : -1) * timemult;
+      setTimeout(rec, timestep, currentPos, currentSpeed);
     } else {
-      currentSpeed -= decel * timemult;
-      if(currentSpeed < 0){
-        currentSpeed = 0;
-        currentPos = stop;
+      resize(stop);
+      if(next !== undefined){
+        next();
       }
     }
-    element.resize(currentPos);
-    currentPos += currentSpeed * (dir ? 1 : -1) * timemult;
-    setTimeout(sweepUtil, timestep, element, dir, stop, maxSpeed, accel, decel, currentPos, currentSpeed, slowat, next);
-  } else {
-    element.resize(stop);
-    if(next !== undefined){
-      next();
-    }
-  }
+  });
 }
 
-function fade(element, total){
+function fade(fader, total){
    return function(dir){
-     fadeUtil(element, total, dir)(0);
+     fadeUtil(fader, total, dir)(0);
    }
 }
 
-function fadeUtil(element, total, dir){
+function fadeUtil(fader, total, dir){
   return (function rec(current){
     if(current <= total){
-      element.setOpacity((dir ? current : total - current) / total);
-      console.log(dir ? current : total - current);
-      console.log(total);
+      fader((dir ? current : total - current) / total);
       setTimeout(rec, timestep, current + timestep);
     } else {
       element.setOpacity(dir ? 1 : 0);

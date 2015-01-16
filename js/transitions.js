@@ -8,7 +8,6 @@ function sequence(functions){
   }
 }
 
-
 function fullSweep(swp, maxSpeed, accel){
   return function(dir, next){
       swp((dir ? 1 : 0), (dir ? maxSpeed : 0), (dir ? 0 : maxSpeed), maxSpeed, accel, accel, next);
@@ -77,9 +76,9 @@ function fadeUtil(fader, total, dir){
   return (function rec(current){
     if(current <= total){
       fader((dir ? current : total - current) / total);
-      setTimeout(rec, timestep, current + timestep);
+      setTimeout(rec, 30, current + 30);
     } else {
-      element.setOpacity(dir ? 1 : 0);
+      fader(dir ? 1 : 0);
     }
   });
 }

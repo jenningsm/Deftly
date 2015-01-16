@@ -8,23 +8,17 @@ function banners(display){
   return ret;
 }
 
-function DisplayCanvas(display){
+function display(url, callback){
+  var spot = document.getElementById("sketchspot"); 
+  spot.style.display = "inline";
+  var iframe = document.createElement("iframe");
+  iframe.setAttribute("src", url);
+  iframe.setAttribute("id", "displayframe");
+  iframe.setAttribute("onload", callback);
+  spot.appendChild(iframe);
 
-  this.toggle = function(dir, next){
-    if(dir){
-      var spot = document.getElementById("sketchspot"); 
-      spot.style.display = "inline";
-      var iframe = document.createElement("iframe");
-      var isrc = document.createAttribute("src");
-      isrc.value = "../uncontext1.html";
-      var frameid = document.createAttribute("id");
-      frameid.value = "displayframe";
-      iframe.setAttributeNode(isrc);
-      iframe.setAttributeNode(frameid);
-      spot.appendChild(iframe);
-    } else {
-      document.getElementById("sketchspot").removeChild(document.getElementById("displayframe"));
-    }
+  return function(x){
+    iframe.style.opacity = x;
   }
 }
 

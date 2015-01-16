@@ -66,19 +66,34 @@ function sweepUtil(resize, dir, stop, maxSpeed, accel, decel, slowat, next){
   });
 }
 
+function sweepDisplay(url){
+  var fading;
+  return function(dir, next){
+    if(dir){
+      fading = fade(display(url), 1000);
+      fading(dir, next);
+    } else {
+      fading(dir, partial(closeDisplay, next));
+    }
+  }
+}
+
 function fade(fader, total){
-   return function(dir){
-     fadeUtil(fader, total, dir)(0);
+   return function(dir, next){
+     fadeUtil(fader, total, dir, next)(0);
    }
 }
 
-function fadeUtil(fader, total, dir){
+function fadeUtil(fader, total, dir, next){
   return (function rec(current){
     if(current <= total){
       fader((dir ? current : total - current) / total);
       setTimeout(rec, 30, current + 30);
     } else {
       fader(dir ? 1 : 0);
+      if(next !== undefined){
+        next();
+      }
     }
   });
 }

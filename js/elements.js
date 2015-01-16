@@ -8,18 +8,23 @@ function banners(display){
   return ret;
 }
 
-function display(url, callback){
+function display(url){
   var spot = document.getElementById("sketchspot"); 
   spot.style.display = "inline";
   var iframe = document.createElement("iframe");
   iframe.setAttribute("src", url);
   iframe.setAttribute("id", "displayframe");
-  iframe.setAttribute("onload", callback);
   spot.appendChild(iframe);
 
   return function(x){
     iframe.style.opacity = x;
   }
+}
+
+function closeDisplay(next){
+  console.log("closing display");
+  document.getElementById("sketchspot").removeChild(document.getElementById("displayframe"));
+  next();
 }
 
 function fullPage(page, display){

@@ -10,7 +10,13 @@ function sequence(functions){
 
 function fullSweep(swp, maxSpeed, accel){
   return function(dir, next){
-      swp((dir ? 1 : 0), (dir ? maxSpeed : 0), (dir ? 0 : maxSpeed), maxSpeed, accel, accel, next);
+      return swp((dir ? 1 : 0), (dir ? maxSpeed : 0), (dir ? 0 : maxSpeed), maxSpeed, accel, accel, next);
+  }
+}
+
+function partSweep(swp, maxSpeed, accel){
+  return function(stop, next){
+      return swp(stop, 0, 0, maxSpeed, accel, accel, next);
   }
 }
 
@@ -34,12 +40,16 @@ function sweep(resize, start){
       //slowat = altslow;
     }*/
     sweepUtil(resize, (start < stop ? true : false), stop, maxSpeed, accel, decel, slowat, next)(start, (accel === 0 ? maxSpeed : startSpeed));
+    var starthold = start;
     start = stop;
+
+    //return the time it takes to finish the sweep
+    return 1.3 * (timestep * Math.abs(stop - starthold) / (maxSpeed * timemult)) + ((accel === 0 ? 0 : (1 / accel)) + (decel === 0 ? 0 : (1 / decel))) * (maxSpeed * .5);
   });
 }
 
 function sweepUtil(resize, dir, stop, maxSpeed, accel, decel, slowat, next){
-  return (function rec(currentPos, currentSpeed){  
+  return (function rec(currentPos, currentSpeed){
     var mult = (dir ? 1 : -1);
     if(currentPos * mult < stop * mult){
       if(currentPos * mult < slowat * mult){

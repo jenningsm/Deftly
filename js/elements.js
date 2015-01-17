@@ -1,4 +1,13 @@
 
+
+function elementFader(id){
+  var el = document.getElementById(id);
+  return function(x){
+    el.style.opacity = x;
+  };
+}
+
+
 function banners(display){
   var headpos = shift(document.getElementById("header"), true, true);
   var tailpos = shift(document.getElementById("footer"), false, true);
@@ -10,6 +19,7 @@ function banners(display){
 
 function display(url){
   var spot = document.getElementById("sketchspot"); 
+  spot.style.opacity = 0;
   spot.style.display = "inline";
   var iframe = document.createElement("iframe");
   iframe.setAttribute("src", url);
@@ -17,7 +27,7 @@ function display(url){
   spot.appendChild(iframe);
 
   return function(x){
-    iframe.style.opacity = x;
+    spot.style.opacity = x;
   }
 }
 

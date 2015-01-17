@@ -10,9 +10,11 @@
   <div id="foreground">
 
     <div class="bar" id="header">
-      <span class="sidetext" id="works" onclick="sweepMenu(vertstate); vertstate = !vertstate;">PROJECTS</span>
-      <span class="sidetext" id="about" onclick="openPage();">ABOUT</span>
-      <span class="centertext" id="title" onclick="sweepDisp(false); closePage();">INSIGHT</span>
+      <div id="headeropen">
+        <span class="sidetext" id="works" onclick="sweepMenu(vertstate); vertstate = !vertstate;">PROJECTS</span>
+        <span class="sidetext" id="about" onclick="openPage();">ABOUT</span>
+        <span class="centertext" id="title" onclick="sweepDisp(false); closePage();">INSIGHT</span>
+      </div>
     </div>
 
     <div id="sketchspot"></div>
@@ -23,7 +25,7 @@
         <div id="menuborder"></div>
         <div id="menutext">
           <span>Electrodynamics</span>
-          <span onclick="sequence([partial(sweepDisp, true), partial(sweepMenu, false)])">Tranquility</span>
+          <span onclick="openTranquility()">Tranquility</span>
           <span onclick="openPage()">Geometries</span>
         </div>
         <div id="menuline"></div>
@@ -46,15 +48,15 @@
 
   </div>
 
+  <script src="../p5.js"></script>
+  <script src="js/arc.js"></script>
+  <script src="js/sketch.js"></script>
   <script src="js/transitions.js"></script>
   <script src="js/positioning.js"></script>
   <script src="js/elements.js"></script>
   <script src="js/help.js"></script>
   <script src="js/images.js"></script>
   <script src="js/partial.js"></script>
-  <script src="../p5.js"></script>
-  <script src="js/arc.js"></script>
-  <script src="js/sketch.js"></script>
   <script src="js/setup.js"></script>
 </body>
 </html>

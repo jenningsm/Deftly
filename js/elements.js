@@ -22,9 +22,10 @@ function display(url){
 }
 
 function closeDisplay(next){
-  console.log("closing display");
   document.getElementById("sketchspot").removeChild(document.getElementById("displayframe"));
-  next();
+  if(next !== undefined){
+    next();
+  }
 }
 
 function fullPage(page, display){

@@ -66,11 +66,11 @@ function sweepUtil(resize, dir, stop, maxSpeed, accel, decel, slowat, next){
   });
 }
 
-function sweepDisplay(url){
+function sweepDisplay(url, time){
   var fading;
   return function(dir, next){
     if(dir){
-      fading = fade(display(url), 1000);
+      fading = fade(display(url), time);
       fading(dir, next);
     } else {
       fading(dir, partial(closeDisplay, next));
@@ -88,7 +88,7 @@ function fadeUtil(fader, total, dir, next){
   return (function rec(current){
     if(current <= total){
       fader((dir ? current : total - current) / total);
-      setTimeout(rec, 30, current + 30);
+      setTimeout(rec, 20, current + 20);
     } else {
       fader(dir ? 1 : 0);
       if(next !== undefined){

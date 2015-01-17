@@ -23,7 +23,7 @@
         <div id="menuborder"></div>
         <div id="menutext">
           <span>Electrodynamics</span>
-          <span onclick="sweepDisp(true);">Tranquility</span>
+          <span onclick="sequence([partial(sweepDisp, true), partial(sweepMenu, false)])">Tranquility</span>
           <span onclick="openPage()">Geometries</span>
         </div>
         <div id="menuline"></div>

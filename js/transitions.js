@@ -13,11 +13,13 @@ function partSweep(swp, maxSpeed, accel){
 }
 
 
+//this should not be in here as it explicitly references ufmMotion
+
 function sweepDisplay(swp, time){
   var fading;
   return function(dir, next){
     if(dir){
-      fading = fade(swp, time);
+      fading = ufmMotion(swp, time);
       fading(dir, next);
     } else {
       fading(dir, partial(closeDisplay, next));

@@ -14,9 +14,15 @@ function sidefade(element){
   }
 }
 
-function scaleBorder(border, orientation){
+function opacity(element){
+  return function(x){
+    element.style.opacity = x;
+  }
+}
+
+function scale(element, orientation){
   return function(x) {
-     border.style.transform = "scale(" + (orientation ? x : 1) + ", " + (orientation ? 1 : x) + ")";
+     element.style.transform = "scale(" + (orientation ? x : 1) + ", " + (orientation ? 1 : x) + ")";
   }
 }
 

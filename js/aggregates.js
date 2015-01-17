@@ -1,13 +1,4 @@
 
-
-function elementFader(id){
-  var el = document.getElementById(id);
-  return function(x){
-    el.style.opacity = x;
-  };
-}
-
-
 function banners(display){
   var headpos = shift(document.getElementById("header"), true, true);
   var tailpos = shift(document.getElementById("footer"), false, true);
@@ -17,6 +8,8 @@ function banners(display){
   return ret;
 }
 
+
+//this one is out of place in that is creates rather than just returning
 function display(url){
   var spot = document.getElementById("sketchspot"); 
   spot.style.opacity = 0;
@@ -31,6 +24,7 @@ function display(url){
   }
 }
 
+//this is out of place as well
 function closeDisplay(next){
   document.getElementById("sketchspot").removeChild(document.getElementById("displayframe"));
   if(next !== undefined){
@@ -44,7 +38,7 @@ function fullPage(page, display){
   var border  = document.getElementById("borderbox");
   
   var c = clip(page, true, page.offsetWidth, page.offsetHeight);
-  var s = scaleBorder(border, true);
+  var s = scale(border, true);
   var f = sidefade(page);
 
   var ret = function(x) { c(x); s(x); f(x); };
@@ -57,7 +51,7 @@ function menuBar(display){
   var bar = document.getElementById("menubar");
   var border = document.getElementById("menuborder");
   var c = clip(bar, false, bar.offsetWidth, bar.offsetHeight);
-  var s = scaleBorder(border, false);
+  var s = scale(border, false);
 
   var ret = function(x) { s(x); c(x); };
   ret(display ? 1 : 0);

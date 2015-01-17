@@ -2,7 +2,9 @@
 var timestep = 17;
 var timemult = timestep / 30;
 
-function sweep(resize, start){
+//       NEWTONIAN MOTION
+
+function nwtMotion(resize, start){
   return (function two(stop, startSpeed, stopSpeed, maxSpeed, accel, decel, next){
     var slowat;
     if(decel === 0){
@@ -21,7 +23,7 @@ function sweep(resize, start){
       console.log(decel);
       //slowat = altslow;
     }*/
-    sweepUtil(resize, (start < stop ? true : false), stop, maxSpeed, accel, decel, slowat, next)(start, (accel === 0 ? maxSpeed : startSpeed));
+    nwtUtil(resize, (start < stop ? true : false), stop, maxSpeed, accel, decel, slowat, next)(start, (accel === 0 ? maxSpeed : startSpeed));
     var starthold = start;
     start = stop;
 
@@ -30,7 +32,7 @@ function sweep(resize, start){
   });
 }
 
-function sweepUtil(resize, dir, stop, maxSpeed, accel, decel, slowat, next){
+function nwtUtil(resize, dir, stop, maxSpeed, accel, decel, slowat, next){
   return (function rec(currentPos, currentSpeed){
     var mult = (dir ? 1 : -1);
     if(currentPos * mult < stop * mult){
@@ -59,15 +61,15 @@ function sweepUtil(resize, dir, stop, maxSpeed, accel, decel, slowat, next){
 }
 
 
-//      FADING
+//      UNIFORM MOTION
 
-function fade(fader, total){
+function ufmMotion(fader, total){
    return function(dir, next){
-     fadeUtil(fader, total, dir, next)(0);
+     ufmUtil(fader, total, dir, next)(0);
    }
 }
 
-function fadeUtil(fader, total, dir, next){
+function ufmUtil(fader, total, dir, next){
   return (function rec(current){
     if(current <= total){
       fader((dir ? current : total - current) / total);

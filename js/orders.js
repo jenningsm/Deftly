@@ -73,7 +73,7 @@ function ufmUtil(fader, total, dir, next){
   return (function rec(current){
     if(current <= total){
       fader((dir ? current : total - current) / total);
-      setTimeout(rec, 20, current + 20);
+      setTimeout(rec, timestep, current + timestep);
     } else {
       fader(dir ? 1 : 0);
       if(next !== undefined){

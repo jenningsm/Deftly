@@ -8,9 +8,9 @@ function banners(display){
   return ret;
 }
 
-function display(display){
+function display(disp){
   var ret = opacity(document.getElementById("sketchspot"));
-  ret(display ? 1 : 0);
+  ret(disp ? 1 : 0);
   return ret;
 }
 

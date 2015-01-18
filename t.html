@@ -1,7 +1,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/sitestyle.css">
-<link href='http://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+<!--<link href='http://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>-->
 </head>
 
 <body>
@@ -13,7 +13,7 @@
       <div id="headeropen">
         <span class="sidetext" id="works" onclick="sweepMenu(vertstate); vertstate = !vertstate;">PROJECTS</span>
         <span class="sidetext" id="about" onclick="openPage();">ABOUT</span>
-        <span class="centertext" id="title" onclick="sweepDisp(false); closePage();">INSIGHT</span>
+        <span class="centertext" id="title" onclick="sweepDisp(); toggleDisplay(false)">INSIGHT</span>
       </div>
     </div>
 
@@ -58,6 +58,6 @@
   <script src="js/misc/util.js"></script>
   <script src="js/misc/pageinterface.js"></script>
   <script src="js/misc/images.js"></script>
-  <script src="js/hold.js"></script>
+  <script src="js/actions.js"></script>
 </body>
 </html>

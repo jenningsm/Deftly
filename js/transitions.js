@@ -1,4 +1,10 @@
 
+function fullFade(fd, time){
+  return function(dir, next){
+    fd((dir ? 1 : 0), time, next);
+  }
+}
+
 
 function fullSweep(swp, maxSpeed, accel){
   return function(dir, next){
@@ -12,18 +18,14 @@ function partSweep(swp, maxSpeed, accel){
   }
 }
 
-
-//this should not be in here as it explicitly references ufmMotion
-
-function sweepDisplay(swp, time){
-  var fading;
-  return function(dir, next){
-    if(dir){
-      fading = ufmMotion(swp, time);
-      fading(dir, next);
-    } else {
-      fading(dir, partial(closeDisplay, next));
+function displayHandle(disp, time){
+  var dir = true;
+  var fd = fullFade(disp, 600);
+  return (function ret(next){
+    if(!dir){
+      next = function() { sequence([closeDisplay, next]);};
     }
-  }
+    fd(dir, next);
+    dir = !dir;
+  });
 }
-

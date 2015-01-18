@@ -63,19 +63,22 @@ function nwtUtil(resize, dir, stop, maxSpeed, accel, decel, slowat, next){
 
 //      UNIFORM MOTION
 
-function ufmMotion(fader, total){
-   return function(dir, next){
-     ufmUtil(fader, total, dir, next)(0);
+function ufmMotion(fader, start){
+   return function(stop, time, next){
+     ufmUtil(fader, time, start, stop, next)(start);
+     start = stop;
    }
 }
 
-function ufmUtil(fader, total, dir, next){
+function ufmUtil(fader, total, start, stop, next){
+  var mult = (start < stop ? 1 : -1);
+  var step = Math.abs(start - stop) * timestep / total;
   return (function rec(current){
-    if(current <= total){
-      fader((dir ? current : total - current) / total);
-      setTimeout(rec, timestep, current + timestep);
+    if(current * mult < stop * mult){
+      fader(current);
+      setTimeout(rec, timestep, current + step * mult);
     } else {
-      fader(dir ? 1 : 0);
+      fader(stop);
       if(next !== undefined){
         next();
       }

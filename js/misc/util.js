@@ -12,3 +12,10 @@ function partial(func /*, 0..n args */) {
     return func.apply(this, allArguments);
   };
 }
+
+function toggle(fn, start){
+  return function(next){
+    fn(start, next);
+    start = !start;
+  }
+}

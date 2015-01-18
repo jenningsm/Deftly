@@ -6,12 +6,14 @@ var partSweepBanners = partSweep(sbanners, .03, .0025);
 var titletext = ufmMotion(opacity(document.getElementById("headeropen")), 1);
 
 function toggleDisplay(dir, next){
-  fullFade(titletext, partSweepBanners((dir ? .5 : 1), next))(!dir);
+  var time = partSweepBanners((dir ? .5 : 1), next);
+  fullFade(titletext, time)(!dir);
 }
 
 var sweepPage = fullSweep(nwtMotion(fullPage("content", false), 0), .05, .003);
 
 var sweepMenu = fullSweep(nwtMotion(menuBar(false), 0), .12, .008);
+var toggleMenu = toggle(sweepMenu, true);
 
 var vertstate = true;
 

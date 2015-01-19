@@ -6,6 +6,15 @@ var timemult = timestep / 30;
 
 function nwtMotion(resize, start){
   return (function two(stop, startSpeed, stopSpeed, maxSpeed, accel, decel, next){
+    /* an attempt to deal with acceleration issues; isn't working
+    var h = stopSpeed / decel;
+    var r = Math.sqrt(((2 * (Math.abs(stop - start)) * accel - stopSpeed * stopSpeed - startSpeed * startSpeed) / (decel * (accel + decel))) + (h * h)) - h;
+    var t = (stopSpeed + decel * r - startSpeed) / accel;
+    if(startSpeed + t * accel < maxSpeed){
+      maxSpeed = t * accel + startSpeed;
+    }*/
+
+
     var slowat;
     if(decel === 0){
       slowat = stop;

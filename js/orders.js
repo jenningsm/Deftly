@@ -6,15 +6,6 @@ var timemult = timestep / 30;
 
 function nwtMotion(resize, start){
   return (function two(stop, startSpeed, stopSpeed, maxSpeed, accel, decel, next){
-    /* an attempt to deal with acceleration issues; isn't working
-    var h = stopSpeed / decel;
-    var r = Math.sqrt(((2 * (Math.abs(stop - start)) * accel - stopSpeed * stopSpeed - startSpeed * startSpeed) / (decel * (accel + decel))) + (h * h)) - h;
-    var t = (stopSpeed + decel * r - startSpeed) / accel;
-    if(startSpeed + t * accel < maxSpeed){
-      maxSpeed = t * accel + startSpeed;
-    }*/
-
-
     var slowat;
     if(decel === 0){
       slowat = stop;
@@ -22,16 +13,6 @@ function nwtMotion(resize, start){
       var decrease = maxSpeed - stopSpeed;
       slowat =  stop - (start > stop ? -1 : 1) * .5 * decrease * decrease / decel;
     }
-  /* this put in handle the case when the max speed is not reached (slowat needs to be different in such a case) but it currently does not work  
-     the equation i used to calculate altslow assumes that startSpeed and stopSpeed are 0, which, obviously, is not always the case
-  
-    var mult = (start < stop ? 1 : -1);
-    var altslow = start + mult * decel * Math.abs(start - stop) / (decel + accel);
-    if(accel != 0 && altslow * mult > slowat * mult){
-      console.log(accel);
-      console.log(decel);
-      //slowat = altslow;
-    }*/
     nwtUtil(resize, (start < stop ? true : false), stop, maxSpeed, accel, decel, slowat, next)(start, (accel === 0 ? maxSpeed : startSpeed));
     var starthold = start;
     start = stop;

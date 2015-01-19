@@ -29,3 +29,11 @@ function displayHandle(disp, time){
     dir = !dir;
   });
 }
+
+
+function toggle(fn, start){
+  return function(next){
+    fn(start, next);
+    start = !start;
+  }
+}

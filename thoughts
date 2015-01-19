@@ -17,3 +17,5 @@ sweeping speed should go by pixels not percent
 
 decentralized control
 dynamic execution by changing functions
+
+timing estimate of sweep is not correct

@@ -1,7 +1,7 @@
 
-var sbanners = nwtMotion(banners(true), 1);
-var sweepBanners = fullSweep(sbanners, .09, .0045);
-var partSweepBanners = partSweep(sbanners, .03, .0025);
+pageMotion();
+bannerMotion();
+menuMotion();
 
 var titletext = ufmMotion(opacity(document.getElementById("headeropen")), 1);
 
@@ -10,10 +10,8 @@ function toggleDisplay(dir, next){
   fullFade(titletext, time)(!dir);
 }
 
-var sweepPage = fullSweep(nwtMotion(fullPage("content", false), 0), .05, .003);
 
-var sweepMenu = fullSweep(nwtMotion(menuBar(false), 0), .12, .008);
-var toggleMenu = toggle(sweepMenu, true);
+
 
 var vertstate = true;
 

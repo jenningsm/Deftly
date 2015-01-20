@@ -31,9 +31,8 @@ function displayHandle(disp, time){
 }
 
 
-function toggle(fn, start){
+function toggle(fn, state){
   return function(next){
-    fn(start, next);
-    start = !start;
+    fn((state() === 1 ? 0 : 1), next);
   }
 }

@@ -5,7 +5,8 @@ var timemult = timestep / 30;
 //       NEWTONIAN MOTION
 
 function nwtMotion(resize, start){
-  return (function two(stop, startSpeed, stopSpeed, maxSpeed, accel, decel, next){
+  this.get = function() { return start; };
+  this.act =  (function two(stop, startSpeed, stopSpeed, maxSpeed, accel, decel, next){
     var slowat;
     if(decel === 0){
       slowat = stop;

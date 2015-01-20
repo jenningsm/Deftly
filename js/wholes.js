@@ -14,5 +14,5 @@ function bannerMotion(){
 
 function pageMotion(){
   var p = new nwtMotion(fullPage("content", false), 0);
-  sweepPage = fullSweep(p.act, .05, .03);
+  sweepPage = fullSweep(p.act, .05, .003);
 }

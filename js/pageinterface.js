@@ -1,7 +1,7 @@
 
-pageMotion();
-bannerMotion();
-menuMotion();
+var page = new pageMotion();
+var banners = new bannerMotion();
+var menu = new menuMotion();
 
 var titletext = ufmMotion(opacity(document.getElementById("headeropen")), 1);
 
@@ -16,18 +16,18 @@ function toggleDisplay(dir, next){
 var vertstate = true;
 
 function openPage(){
-  sequence([partial(sweepMenu, false), partial(sweepBanners, false), partial(sweepPage, true)]);
+  sequence([partial(menu.sweep, false), partial(banners.sweep, false), partial(page.sweep, true)]);
 }
 
 function closePage(){
-  sequence([partial(sweepPage, false), partial(sweepBanners, true)]);
+  sequence([partial(page.sweep, false), partial(banners.sweep, true)]);
 }
 
 function openTranquility(){
   loadDisplay("../uncontext1.html");
   sweepDisp = displayHandle(ufmMotion(display(false), 0), 600);
   
-  sweepMenu(false);
+  menu.sweep(false);
   sequence([partial(toggleDisplay, true), sweepDisp]); 
 }
 

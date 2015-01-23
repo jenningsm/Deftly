@@ -6,7 +6,7 @@ var menu = new menuMotion();
 var titletext = ufmMotion(opacity(document.getElementById("headeropen")), 1);
 
 function toggleDisplay(dir, next){
-  var time = partSweepBanners((dir ? .5 : 1), next);
+  var time = banners.move((dir ? .5 : 1), next);
   fullFade(titletext, time)(!dir);
 }
 

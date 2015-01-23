@@ -1,5 +1,5 @@
 
-var timestep = 20;
+var timestep = 17;
 var timemult = timestep / 30;
 
 //       NEWTONIAN MOTION

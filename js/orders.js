@@ -25,7 +25,6 @@ function nwtMotion(resize, start){
 
 function nwtUtil(resize, dir, stop, maxSpeed, accel, decel, slowat, next){
   return (function rec(currentPos, currentSpeed){
-    var startTime = Date.now();
     var mult = (dir ? 1 : -1);
     if(currentPos * mult < stop * mult){
       if(currentPos * mult < slowat * mult){
@@ -42,7 +41,7 @@ function nwtUtil(resize, dir, stop, maxSpeed, accel, decel, slowat, next){
       }
       resize(currentPos);
       currentPos += currentSpeed * (dir ? 1 : -1) * timemult;
-      setTimeout(rec, timestep - (Date.now() - startTime), currentPos, currentSpeed);
+      setTimeout(rec, timestep, currentPos, currentSpeed);
     } else {
       resize(stop);
       if(next !== undefined){
@@ -63,13 +62,12 @@ function ufmMotion(fader, start){
 }
 
 function ufmUtil(fader, total, start, stop, next){
-  var startTime = Date.now();
   var mult = (start < stop ? 1 : -1);
   var step = Math.abs(start - stop) * timestep / total;
   return (function rec(current){
     if(current * mult < stop * mult){
       fader(current);
-      setTimeout(rec, timestep - (Math.max(timestep, Date.now() - startTime)), current + step * mult);
+      setTimeout(rec, timestep, current + step * mult);
     } else {
       fader(stop);
       if(next !== undefined){

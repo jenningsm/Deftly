@@ -39,7 +39,7 @@ function nwtUtil(resize, dir, stop, maxSpeed, accel, decel, slowat, next){
           currentPos = stop;
         }
       }
-      resize(currentPos);
+      requestAnimationFrame(partial(resize, currentPos));
       currentPos += currentSpeed * (dir ? 1 : -1) * timemult;
       setTimeout(rec, timestep, currentPos, currentSpeed);
     } else {
@@ -66,7 +66,7 @@ function ufmUtil(fader, total, start, stop, next){
   var step = Math.abs(start - stop) * timestep / total;
   return (function rec(current){
     if(current * mult < stop * mult){
-      fader(current);
+      requestAnimationFrame(partial(fader, current));
       setTimeout(rec, timestep, current + step * mult);
     } else {
       fader(stop);

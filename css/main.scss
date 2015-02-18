@@ -1,7 +1,7 @@
-@import (reference) "general.less";
-@import "menu.less";
-@import "bars.less";
-@import "page.less";
+@import '_general';
+@import 'menu';
+@import 'bars';
+@import 'page';
 
 #foreground {
   z-index: 10;

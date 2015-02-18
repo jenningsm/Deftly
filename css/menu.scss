@@ -9,7 +9,7 @@
 }
 
 #menuborder {
-  .borderbox;
+  @include borderbox();
   z-index: 1;
   border-top: 2px solid #808080;
   border-bottom: 2px solid #808080;
@@ -27,7 +27,7 @@
 }
 
 #menutext span {
-   .clickable;
+   @include clickable();
    display: table-cell;
    width: 20%;
    vertical-align: middle;

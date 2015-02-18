@@ -27,7 +27,7 @@
 #name {
   text-shadow: 0em 0em .15em #8F8F8F;
   font-size: 1.7em;
-  top: .12em;
+  top: .18em;
   letter-spacing: .03em;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .sidetext {
-  .clickable;
+  @include clickable();
   font-weight: 300;
   font-size: 1.7em;
   text-shadow: .035em #A0A0A0;
@@ -52,7 +52,7 @@
 }
 
 .centertext {
-  .unselect;
+  @include unselect();
   left: 25%;
   font-weight: 300;
   text-align: center;

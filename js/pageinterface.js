@@ -1,13 +1,14 @@
 
-var page = new pageMotion();
-var banners = new bannerMotion();
-var menu = new menuMotion();
 
-var titletext = ufmMotion(opacity(document.getElementById("headeropen")), 1);
+var menu = mover(menuBar(false), 0);
+var banner = mover(banners(true), 1);
+var page = mover(fullPage("content", false), 0);
+var titleText = mover(opacity(document.getElementById("headeropen")), 1);
+
 
 function toggleDisplay(dir, next){
-  var time = banners.move((dir ? .5 : 1), next);
-  fullFade(titletext, time)(!dir);
+  var time = banners((dir ? .5 : 1), nwtMotion(3, 3), .01, next);
+  titleText((dir ? 0, 1), uniformMotion(), .01);
 }
 
 
@@ -16,11 +17,14 @@ function toggleDisplay(dir, next){
 var vertstate = true;
 
 function openPage(){
-  sequence([partial(menu.sweep, false), partial(banners.sweep, false), partial(page.sweep, true)]);
+  sequence([partial(menu, 0, nwtMotion(3, 0), .01), partial(banners, 0, nwtMotion(3, 0), .01), partial(page, 1, nwtMotion(0, 3), .01)]);
 }
 
 function closePage(){
-  sequence([partial(page.sweep, false), partial(banners.sweep, true)]);
+  var seq = [];
+  seq.push(partial(page, 0, nwtMotion(3, 0), .01));
+  seq.push(partial(banner, 1, nwtMotion(0, 3), .01));
+  sequence(seq);
 }
 
 function openTranquility(){

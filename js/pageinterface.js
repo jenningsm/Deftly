@@ -8,7 +8,7 @@ var titleText = mover(opacity(document.getElementById("headeropen")), 1);
 
 function toggleDisplay(dir, next){
   var time = banners((dir ? .5 : 1), nwtMotion(3, 3), .01, next);
-  titleText((dir ? 0, 1), uniformMotion(), .01);
+  titleText((dir ? 0 : 1), uniformMotion(), .01);
 }
 
 
@@ -17,13 +17,14 @@ function toggleDisplay(dir, next){
 var vertstate = true;
 
 function openPage(){
-  sequence([partial(menu, 0, nwtMotion(3, 0), .01), partial(banners, 0, nwtMotion(3, 0), .01), partial(page, 1, nwtMotion(0, 3), .01)]);
+//  sequence([partial(menu, 0, nwtMotion(3, 0), .01), partial(banners, 0, nwtMotion(3, 0), .01), partial(page, 1, nwtMotion(0, 3), .01)]);
+  sequence([partial(banner, 0, nwtMotion(2, 0), .025), partial(page, 1, nwtMotion(0, 3), .02)]);
 }
 
 function closePage(){
   var seq = [];
-  seq.push(partial(page, 0, nwtMotion(3, 0), .01));
-  seq.push(partial(banner, 1, nwtMotion(0, 3), .01));
+  seq.push(partial(page, 0, nwtMotion(3, 0), .02));
+  seq.push(partial(banner, 1, nwtMotion(0, 2), .025));
   sequence(seq);
 }
 

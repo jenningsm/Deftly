@@ -1,9 +1,10 @@
 
-function nwtMotion(accel, decel){
+function nwtMotion(accel, decel, maxSpeed){
 
   var startSpeed, stopSpeed, maxSpeed;
 
-  maxSpeed = 1;
+  if(maxSpeed === undefined)
+    maxSpeed = 1;
 
   if(accel === 0)
     startSpeed = maxSpeed;
@@ -13,22 +14,33 @@ function nwtMotion(accel, decel){
     stopSpeed = maxSpeed;
   else 
     stopSpeed = 0;
-  }
+
+
 
   //the point in time at which the item will begin to decelerate
   var decelAt = (decel + stopSpeed - startSpeed) / (decel + accel);
   if(maxSpeed !== 0){
-    decelAt = Math.max(decelAt, (maxSpeed - stopSpeed) / decel);
+    if(decel === 0){
+      decelAt = 1;
+    } else {
+      decelAt = Math.max(decelAt, (maxSpeed - stopSpeed) / decel);
+    }
   }
-  
+
   //the point in time at which the item will stop accelerating
-  var stopAccelAt = Math.min(decelAt, (maxSpeed - startSpeed) / accel);
+  var stopAccelAt;
+  if(accel === 0){
+    stopAccelAt = 0;
+  } else {
+    stopAccelAt = Math.min(decelAt, (maxSpeed - startSpeed) / accel);
+  }
 
   //the total distance that will be travelled, used to scale down to 1
   var totalDist = 0;
   totalDist += .5 * accel * Math.pow(stopAccelAt, 2);
   totalDist += maxSpeed * (decelAt - stopAccelAt);
-  totalDist += -.5 * decel * Math.pow(decelfor, 2) + decelFor * stopSpeed;
+  totalDist += ((1 - decelAt) * decel + stopSpeed)* (1 - decelAt) - .5 * decel * Math.pow(1 - decelAt, 2);
+
 
   return function(x){
     //amount of time spent accelerating, floating, and decelerating, respectively
@@ -39,7 +51,7 @@ function nwtMotion(accel, decel){
     //amount of distance traveled while accelerating, floating, and decelerating, respectively
     var accelDist = .5 * accel * accelFor * accelFor + accelFor * startSpeed;
     var floatDist = floatFor * maxSpeed;
-    var decelDist = -.5 * decel * decelFor * decelFor + decelFor * (stopSpeed + decel * (1 - x));
+    var decelDist = ((1 - decelAt) * decel + stopSpeed) * decelFor - .5 * decel * Math.pow(decelFor, 2); 
 
     return (accelDist + floatDist + decelDist) / totalDist;
   } 

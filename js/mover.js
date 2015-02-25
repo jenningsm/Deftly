@@ -6,13 +6,15 @@ function mover(aggregate, pos){
       if(x >= 1){
         pos = target;
         aggregate(target);
-        next();
+        if(next !== undefined)
+          next();
       } else {
         pos = posHold + (target - posHold) * motion(x);
         aggregate(pos);
         x += speed;
         requestAnimationFrame(move);
       }
-    }();
+    }
+    requestAnimationFrame(move);
   }
 }

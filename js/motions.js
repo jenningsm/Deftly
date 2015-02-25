@@ -23,7 +23,7 @@ function nwtMotion(accel, decel, maxSpeed){
     if(decel === 0){
       decelAt = 1;
     } else {
-      decelAt = Math.max(decelAt, (maxSpeed - stopSpeed) / decel);
+      decelAt = Math.max(decelAt, 1 - (maxSpeed - stopSpeed) / decel);
     }
   }
 
@@ -40,7 +40,6 @@ function nwtMotion(accel, decel, maxSpeed){
   totalDist += .5 * accel * Math.pow(stopAccelAt, 2);
   totalDist += maxSpeed * (decelAt - stopAccelAt);
   totalDist += ((1 - decelAt) * decel + stopSpeed)* (1 - decelAt) - .5 * decel * Math.pow(1 - decelAt, 2);
-
 
   return function(x){
     //amount of time spent accelerating, floating, and decelerating, respectively

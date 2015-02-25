@@ -18,13 +18,13 @@ var vertstate = true;
 
 function openPage(){
 //  sequence([partial(menu, 0, nwtMotion(3, 0), .01), partial(banners, 0, nwtMotion(3, 0), .01), partial(page, 1, nwtMotion(0, 3), .01)]);
-  sequence([partial(banner, 0, nwtMotion(2, 0), .025), partial(page, 1, nwtMotion(0, 3), .02)]);
+  sequence([partial(banner, 0, nwtMotion(1.2, 0), .025), partial(page, 1, nwtMotion(0, 3), .02)]);
 }
 
 function closePage(){
   var seq = [];
   seq.push(partial(page, 0, nwtMotion(3, 0), .02));
-  seq.push(partial(banner, 1, nwtMotion(0, 2), .025));
+  seq.push(partial(banner, 1, nwtMotion(0, 1), .025));
   sequence(seq);
 }
 

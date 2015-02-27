@@ -11,9 +11,9 @@
 
     <div class="bar" id="header">
       <div id="headeropen">
-        <span class="sidetext" id="works" onclick="menu.toggle();">SKETCHES</span>
+        <span class="sidetext" id="works" onclick="menu(-1, nwtMotion(0, 2), .03);">SKETCHES</span>
         <span class="sidetext" id="about" onclick="openPage();">ABOUT</span>
-        <span class="centertext" id="title" onclick="sweepDisp(); toggleDisplay(false)">DEFTLY</span>
+        <span class="centertext" id="title" onclick="closeDisplay(); toggleDisplay(false)">DEFTLY</span>
       </div>
     </div>
 
@@ -25,7 +25,7 @@
         <div id="menuborder"></div>
         <div id="menutext">
           <span>Electrodynamics</span>
-          <span onclick="openTranquility()">Tranquility</span>
+          <span onclick="openDisplay('../uncontext1.html')">Tranquility</span>
           <span onclick="openPage()">Geometries</span>
         </div>
         <div id="menuline"></div>
@@ -54,11 +54,10 @@
   <script src="js/sketch/sketch.js"></script>
   <script src="js/motions.js"></script>
   <script src="js/mover.js"></script>
-  <script src="js/transitions.js"></script>
   <script src="js/low/setters.js"></script>
   <script src="js/low/aggregates.js"></script>
   <script src="js/pageinterface.js"></script>
   <script src="js/misc/images.js"></script>
-  <script src="js/actions.js"></script>
+  <script src="js/display.js"></script>
 </body>
 </html>

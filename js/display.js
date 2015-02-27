@@ -9,7 +9,7 @@ function loadDisplay(url){
   spot.appendChild(iframe);
 }
 
-function closeDisplay(next){
+function removeDisplay(next){
   document.getElementById("sketchspot").removeChild(document.getElementById("displayframe"));
   if(next !== undefined){
     next();

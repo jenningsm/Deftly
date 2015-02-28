@@ -219,7 +219,10 @@
   height: 74%;
   top: 14%;
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  font-family: 'Khand', sans-serif;
+  font-weight: 300;
+  font-size: 1.2em; }
 
 #images {
   position: absolute;
@@ -237,28 +240,26 @@
   z-index: 5; }
 
 #aboutcontent {
+  background: #FBFBFB;
   position: absolute;
+  width: 100%;
   height: 60%;
   top: 20%;
-  width: 75%;
-  left: 12.5%;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
+  border-top: 2px solid #B0B0B0;
+  border-bottom: 2px solid #B0B0B0; }
+
+#aboutcontainer {
+  display: table;
+  width: 80%;
+  left: 10%;
+  height: 80%;
+  top: 10%;
+  position: absolute; }
 
 #abouttext {
-  position: relative;
-  font-size: 1.2em; }
-
-#abouttext::after {
-  content: '';
-  background: #F0F0F0;
-  position: absolute;
-  width: 300%;
-  left: -100%;
-  height: 50%;
-  top: 25%;
-  z-index: -1; }
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle; }
 
 .stripe::before {
   left: 0;

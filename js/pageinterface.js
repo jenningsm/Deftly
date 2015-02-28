@@ -18,6 +18,16 @@ var page = mover(fullPage("content", false), 0);
 var titleText = mover(opacity(document.getElementById("headeropen")), 1);
 var disp = mover(display(false), 0);
 
+var bottomOpen = mover(opacity(document.getElementById("open")), 1);
+var bottomBack = mover(opacity(document.getElementById("back")), 0);
+var bottomText = function(target, motion, speed, next){
+  if(target > .5){
+    bottomBack(0, motion, speed, function() { bottomOpen(2 * (target - .5), motion, speed, next)} );
+  } else {
+    bottomOpen(0, motion, speed, function() { bottomBack((.5 - target) * 2, motion, speed, next)} );
+  }
+}
+
 
 
 function openPage(){
@@ -41,8 +51,9 @@ function openDisplay(path){
   loadDisplay(path);
   
   function moveBanners(next){
-    banner(.5, nwtMotion(3, 3), .01, next);
-    titleText(0, uniformMotion(), .04);
+    banner(.5, nwtMotion(3, 3), .0075, next);
+    titleText(0, uniformMotion(), .02);
+    bottomText(0, uniformMotion(), .04);
   }
 
   menu(0, nwtMotion(2, 0), .03);
@@ -50,7 +61,8 @@ function openDisplay(path){
 }
 
 function closeDisplay(){
-  banner(1, nwtMotion(3, 3), .01);
+  banner(1, nwtMotion(3, 3), .005);
   titleText(1, uniformMotion(), .01);
+  bottomText(1, uniformMotion(), .02);
   sequence([partial(disp, 0, uniformMotion(), .03), removeDisplay]);
 }

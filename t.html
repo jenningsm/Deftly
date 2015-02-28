@@ -13,7 +13,7 @@
       <div id="headeropen">
         <span class="sidetext" id="works" onclick="menu(-1, nwtMotion(0, 2), .03);">SKETCHES</span>
         <span class="sidetext" id="about" onclick="openPage();">ABOUT</span>
-        <span class="centertext" id="title" onclick="closeDisplay(); toggleDisplay(false)">DEFTLY</span>
+        <span class="centertext" id="title">DEFTLY</span>
       </div>
     </div>
 
@@ -24,7 +24,7 @@
       <div id="menubar">
         <div id="menuborder"></div>
         <div id="menutext">
-          <span>Electrodynamics</span>
+          <span onclick="openDisplay('../uncontext2.html')">Electrodynamics</span>
           <span onclick="openDisplay('../uncontext1.html')">Tranquility</span>
           <span onclick="openPage()">Geometries</span>
         </div>
@@ -43,7 +43,8 @@
     </div>
 
     <div class="bar" id="footer">
-      <span class="centertext" id="name">GENERATIVE SKETCHES</span>
+      <span class="centertext bottomtext" id="open">GENERATIVE SKETCHES</span>
+      <span class="centertext bottomtext" id="back" onclick="closeDisplay()">BACK</span>
     </div>
 
   </div>

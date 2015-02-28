@@ -75,11 +75,14 @@
   letter-spacing: .15em;
   bottom: .24em; }
 
-#name {
+.bottomtext {
   text-shadow: 0em 0em .15em #8F8F8F;
   font-size: 1.7em;
   top: .18em;
   letter-spacing: .03em; }
+
+#back {
+  opacity: 0; }
 
 #works {
   left: 0; }

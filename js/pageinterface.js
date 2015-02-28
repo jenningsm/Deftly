@@ -47,23 +47,24 @@ function closePage(page){
 }
 
 
+var speedScale = .75;
 
 function openDisplay(path){
   loadDisplay(path);
   
   function moveBanners(next){
-    banner(.5, nwtMotion(3, 3), .0075, next);
-    titleText(0, uniformMotion(), .02);
-    bottomText(0, uniformMotion(), .04);
+    banner(.5, nwtMotion(3, 3), .0075 * speedScale, next);
+    titleText(0, uniformMotion(), .02 * speedScale);
+    bottomText(0, uniformMotion(), .04 * speedScale);
   }
 
   menu(0, nwtMotion(2, 0), .03);
-  sequence([moveBanners, partial(disp, 1, uniformMotion(), .04)]); 
+  sequence([moveBanners, partial(disp, 1, uniformMotion(), .04 * speedScale)]); 
 }
 
 function closeDisplay(){
-  banner(1, nwtMotion(3, 3), .005);
-  titleText(1, uniformMotion(), .01);
-  bottomText(1, uniformMotion(), .02);
-  sequence([partial(disp, 0, uniformMotion(), .03), removeDisplay]);
+  banner(1, nwtMotion(3, 3), .005 * speedScale);
+  titleText(1, uniformMotion(), .01 * speedScale);
+  bottomText(1, uniformMotion(), .02 * speedScale);
+  sequence([partial(disp, 0, uniformMotion(), .03 * speedScale), removeDisplay]);
 }

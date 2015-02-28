@@ -33,10 +33,11 @@ var pages = {'about' : about, 'geometries' : geometries};
 
 function openPage(page){
   var seq = [];
-  seq.push(partial(menu, 0, .05));
+//  seq.push(partial(menu, 0, .05));
   seq.push(partial(banner, 0, nwtMotion(1.2, 0), .025));
   seq.push(partial(pages[page], 1, nwtMotion(0, 2), .02));
   sequence(seq);
+  menu(0, .05);
 }
 
 function closePage(page){

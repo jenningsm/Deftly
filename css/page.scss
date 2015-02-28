@@ -119,7 +119,7 @@ $foot-height: 12%;
   background: #FBFBFB;
   position: absolute;
   width: 100%;
-  $height: 60%;
+  $height: 90%;
   height: $height;
   top: (100% - $height) / 2;
   $border-color: #B0B0B0;
@@ -129,14 +129,25 @@ $foot-height: 12%;
 
 
 #aboutcontainer {
-  display: table;
-  $width: 80%;
-  $height: 80%;
-  width: $width;
-  left: (100% - $width) / 2;
+  background: #FEFEFE;
+  $height: 55%;
   height: $height;
+  width: 100%;
+  left: 0;
   top: (100% - $height) / 2;
   position: absolute;
+  $border-color: #B0B0B0;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+}
+
+#horzbound {
+  $width: 80%;
+  width: $width;
+  left: (100% - $width) / 2;
+  height: 100%;
+  position: absolute;
+  display: table;
 }
 
 #abouttext {

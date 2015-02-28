@@ -6,7 +6,7 @@
   border-left: 3px solid #808080;
 }
 
-#content {
+.pagecontent {
   height: 100%;
   width: 100%;
   margin: 0 auto;
@@ -56,10 +56,14 @@
   justify-content: center;
 }
 
-#pagehead {
+
+$head-height: 14%;
+$foot-height: 10%;
+
+.pagehead {
   @include unselect();
   font-size: 2.5em;
-  height: 10%;
+  height: $head-height;
   position: relative;
   top: 0%;
   display: flex;
@@ -68,9 +72,31 @@
   z-index: 5;
 }
 
+.pagefooter {
+  font-size: 2em;
+  height: $foot-height;
+  position: absolute;
+  width: 100%;
+  bottom: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.pagefooter > .page-footer-text {
+  @include clickable();
+}
+
+.bulk {
+  height: 100% - $head-height - $foot-height;
+  top: $head-height;
+  position: absolute;
+  width: 100%;
+}
+
 #images {
   position: absolute;
-  top: 7.5%;
   width: 100%;
   height: 100%;
   z-index: 4;

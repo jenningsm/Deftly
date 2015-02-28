@@ -3,6 +3,19 @@
 @import 'bars';
 @import 'page';
 
+.stripe::before {
+  left: 0;
+  content: '';
+  position: absolute;
+  background-color: #B0B0B0;
+  opacity: .1;
+  bottom: 37%;
+  height: 18%;
+  width: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
 #foreground {
   z-index: 10;
   position: absolute;

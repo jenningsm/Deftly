@@ -133,7 +133,7 @@
   border-right: 3px solid #808080;
   border-left: 3px solid #808080; }
 
-#content {
+.pagecontent {
   height: 100%;
   width: 100%;
   margin: 0 auto;
@@ -179,7 +179,7 @@
   align-items: center;
   justify-content: center; }
 
-#pagehead {
+.pagehead {
   cursor: default;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -187,7 +187,7 @@
   -o-user-select: none;
   user-select: none;
   font-size: 2.5em;
-  height: 10%;
+  height: 14%;
   position: relative;
   top: 0%;
   display: flex;
@@ -195,9 +195,34 @@
   justify-content: center;
   z-index: 5; }
 
+.pagefooter {
+  font-size: 2em;
+  height: 10%;
+  position: absolute;
+  width: 100%;
+  bottom: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5; }
+
+.pagefooter > .page-footer-text {
+  cursor: pointer;
+  cursor: hand;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none; }
+
+.bulk {
+  height: 76%;
+  top: 14%;
+  position: absolute;
+  width: 100%; }
+
 #images {
   position: absolute;
-  top: 7.5%;
   width: 100%;
   height: 100%;
   z-index: 4;
@@ -210,6 +235,18 @@
   width: 80%;
   left: 10%;
   z-index: 5; }
+
+.stripe::before {
+  left: 0;
+  content: '';
+  position: absolute;
+  background-color: #B0B0B0;
+  opacity: .1;
+  bottom: 37%;
+  height: 18%;
+  width: 100%;
+  z-index: 1;
+  pointer-events: none; }
 
 #foreground {
   z-index: 10;

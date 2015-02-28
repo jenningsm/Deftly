@@ -14,9 +14,9 @@ function display(disp){
   return ret;
 }
 
-function fullPage(page, display){
+function fullPage(pg, display){
 
-  var page  = document.getElementById(page);
+  var page  = document.getElementById(pg);
   var border  = document.getElementById("borderbox");
   
   var c = clip(page, true, page.offsetWidth, page.offsetHeight);
@@ -25,6 +25,7 @@ function fullPage(page, display){
 
   var ret = function(x) { c(x); s(x); f(x); };
   ret(display ? 1 : 0);
+  console.log(pg, display ? 1 : 0);
   return ret;
 
 }

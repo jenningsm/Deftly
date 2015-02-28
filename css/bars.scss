@@ -33,6 +33,8 @@
 
 #back {
   opacity: 0;
+  @include clickable();
+  display: none;
 }
 
 #works {

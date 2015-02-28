@@ -32,6 +32,7 @@
 #menutext span {
   cursor: pointer;
   cursor: hand;
+  pointer-events: auto;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -82,7 +83,16 @@
   letter-spacing: .03em; }
 
 #back {
-  opacity: 0; }
+  opacity: 0;
+  cursor: pointer;
+  cursor: hand;
+  pointer-events: auto;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  display: none; }
 
 #works {
   left: 0; }
@@ -93,6 +103,7 @@
 .sidetext {
   cursor: pointer;
   cursor: hand;
+  pointer-events: auto;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -179,6 +190,7 @@
 .pagefooter > .page-footer-text {
   cursor: pointer;
   cursor: hand;
+  pointer-events: auto;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -207,6 +219,7 @@
 .sidebar {
   cursor: pointer;
   cursor: hand;
+  pointer-events: auto;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;

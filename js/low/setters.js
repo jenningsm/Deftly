@@ -15,7 +15,14 @@ function sidefade(element){
 }
 
 function opacity(element){
+  var last = -1;
   return function(x){
+    if(last !== 0 && x === 0){
+      element.style.display = 'none';
+    } else if(last === 0 && x !== 0){
+      element.style.display = 'inline';
+    }
+    last = x;
     element.style.opacity = x;
   }
 }

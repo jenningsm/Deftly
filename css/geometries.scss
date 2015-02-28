@@ -1,0 +1,40 @@
+
+#imageholder {
+  max-height: 100%;
+  width: auto;
+}
+
+#leftbar {
+  left: 0%;
+}
+
+#rightbar {
+ right: 0%;
+}
+
+.sidebar {
+
+  @include clickable();
+  z-index: 5;
+
+  position: absolute;
+  top: 0%;
+  height: 100%;
+  width : 10%;
+
+  font-size: 4em;
+  text-shadow: 0 0 2px #FFFFFF;
+  color: #808080;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#images {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  overflow: hidden;
+}

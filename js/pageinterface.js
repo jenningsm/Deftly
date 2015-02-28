@@ -2,13 +2,13 @@
 
 var m = mover(menuBar(false), 0);
 var menuPos = 0;
-function menu(target, motion, speed, next){
+function menu(target, speed, next){
   if(target === -1){
     var newPos = (menuPos === 0 ? 1 : 0);
-    m(newPos, motion, speed, next);
+    m(newPos, newPos === 1 ? nwtMotion(0, 2) : nwtMotion(2, 0), speed, next);
     menuPos = newPos;
   } else {
-    m(target, motion, speed, next);
+    m(target, target === 1 ? nwtMotion(0, 2) : nwtMotion(2, 0), speed, next);
     menuPos = target;
   }
 }
@@ -33,7 +33,7 @@ var pages = {'about' : about, 'geometries' : geometries};
 
 function openPage(page){
   var seq = [];
-  seq.push(partial(menu, 0, nwtMotion(3, 0), .03));
+  seq.push(partial(menu, 0, .05));
   seq.push(partial(banner, 0, nwtMotion(1.2, 0), .025));
   seq.push(partial(pages[page], 1, nwtMotion(0, 2), .02));
   sequence(seq);
@@ -58,13 +58,13 @@ function openDisplay(path){
     bottomText(0, uniformMotion(), .04 * speedScale);
   }
 
-  menu(0, nwtMotion(2, 0), .03);
-  sequence([moveBanners, partial(disp, 1, uniformMotion(), .04 * speedScale)]); 
+  menu(0, .05);
+  sequence([moveBanners, partial(disp, 1, uniformMotion(), .04)]); 
 }
 
 function closeDisplay(){
   banner(1, nwtMotion(3, 3), .005 * speedScale);
   titleText(1, uniformMotion(), .01 * speedScale);
   bottomText(1, uniformMotion(), .02 * speedScale);
-  sequence([partial(disp, 0, uniformMotion(), .03 * speedScale), removeDisplay]);
+  sequence([partial(disp, 0, uniformMotion(), .03), removeDisplay]);
 }

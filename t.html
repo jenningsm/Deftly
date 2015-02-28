@@ -11,7 +11,7 @@
 
     <div class="bar" id="header">
       <div id="headeropen">
-        <span class="sidetext" id="works" onclick="menu(-1, nwtMotion(0, 2), .03);">SKETCHES</span>
+        <span class="sidetext" id="works" onclick="menu(-1, .035);">SKETCHES</span>
         <span class="sidetext" id="about" onclick="openPage('about');">ABOUT</span>
         <span class="centertext" id="title">DEFTLY</span>
       </div>
@@ -45,9 +45,16 @@
           <span class="page-footer-text">BACK</span>
         </div>
       </div>
+
       <div class="pagecontent" id="aboutpage">
         <div class="pagehead stripe">ABOUT</div>
-        <div class="bulk"></div>
+        <div class="bulk">
+          <div id="aboutcontent">
+            <div id="abouttext">
+              My name is Michael Jennings and these are my generative sketches.
+            </div>
+          </div>
+        </div>
         <div class="pagefooter stripe" onclick="closePage('about')">
           <span class="page-footer-text">BACK</span>
         </div>

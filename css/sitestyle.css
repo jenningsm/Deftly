@@ -348,4 +348,8 @@ html, body {
   margin: 0px;
   padding: 0px; }
 
+a {
+  color: black;
+  outline: none; }
+
 /*# sourceMappingURL=sitestyle.css.map */

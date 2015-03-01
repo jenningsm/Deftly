@@ -1,21 +1,6 @@
 moving between url states
-//reorganize html
-handling multiple pages
 back button
 double clicking
-//consistent z-indexing
 
 px vs % in scaling
 scaling font sizes
-
-generalizing mechanics
-
-opacity changes independent of position
-
-invisible title text
-sweeping speed should go by pixels not percent
-
-decentralized control
-dynamic execution by changing functions
-
-timing estimate of sweep is not correct

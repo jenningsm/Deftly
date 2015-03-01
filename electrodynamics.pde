@@ -84,7 +84,7 @@ void draw(){
 
   opacity = count * curSpeed * .01;
   if(opacity > 0){
-    back(true, 4 + opacity * opacity * .2);
+    back(true, 4 + opacity * opacity * opacity * .07);
   }
   
  // back(false, max(64 - count , 0));

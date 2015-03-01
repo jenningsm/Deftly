@@ -55,7 +55,7 @@ function openDisplay(path){
   
   function moveBanners(next){
     banner(.5, nwtMotion(3, 3), .0075 * speedScale, next);
-    titleText(0, uniformMotion(), .02 * speedScale);
+    titleText(0, uniformMotion(), .04 * speedScale);
     bottomText(0, uniformMotion(), .04 * speedScale);
   }
 

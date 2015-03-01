@@ -25,10 +25,31 @@
   border-bottom: 1px solid $border-color;
 }
 
+$text-width: 80%;
+$side-bar-width: (100% - $text-width) * .14;
+$side-bar-color: #d0d0d0;
+
+#aboutcontainer::before {
+  content: '';
+  background: $side-bar-color;
+  position: absolute;
+  height: 100%;
+  width: $side-bar-width;
+  left: 0;
+}
+
+#aboutcontainer::after {
+  content: '';
+  background: $side-bar-color;
+  position: absolute;
+  height: 100%;
+  width: $side-bar-width;
+  right: 0;
+}
+
 #horzbound {
-  $width: 80%;
-  width: $width;
-  left: (100% - $width) / 2;
+  width: $text-width;
+  left: (100% - $text-width) / 2;
   height: 100%;
   position: absolute;
   display: table;

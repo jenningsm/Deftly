@@ -25,7 +25,6 @@ function fullPage(pg, display){
 
   var ret = function(x) { c(x); s(x); f(x); };
   ret(display ? 1 : 0);
-  console.log(pg, display ? 1 : 0);
   return ret;
 
 }

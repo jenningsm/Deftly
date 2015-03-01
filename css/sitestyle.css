@@ -263,6 +263,22 @@
   border-top: 1px solid #B0B0B0;
   border-bottom: 1px solid #B0B0B0; }
 
+#aboutcontainer::before {
+  content: '';
+  background: #d0d0d0;
+  position: absolute;
+  height: 100%;
+  width: 2.8%;
+  left: 0; }
+
+#aboutcontainer::after {
+  content: '';
+  background: #d0d0d0;
+  position: absolute;
+  height: 100%;
+  width: 2.8%;
+  right: 0; }
+
 #horzbound {
   width: 80%;
   left: 10%;

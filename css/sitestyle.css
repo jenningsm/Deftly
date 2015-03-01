@@ -26,10 +26,17 @@
   left: 25%;
   height: 100%;
   position: relative;
-  text-align: center;
   display: table; }
 
-#menutext span {
+.menublock {
+  display: table-cell;
+  width: 20%;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+  text-align: center; }
+
+.menublock > span {
   cursor: pointer;
   cursor: hand;
   pointer-events: auto;
@@ -37,12 +44,7 @@
   -khtml-user-select: none;
   -moz-user-select: none;
   -o-user-select: none;
-  user-select: none;
-  display: table-cell;
-  width: 20%;
-  vertical-align: middle;
-  position: relative;
-  z-index: 1; }
+  user-select: none; }
 
 #menuline {
   position: absolute;

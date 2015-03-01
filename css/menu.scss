@@ -22,17 +22,20 @@
   left: 25%;
   height: 100%;
   position: relative;
-  text-align: center;
   display: table;
 }
 
-#menutext span {
-   @include clickable();
+.menublock {
    display: table-cell;
    width: 20%;
    vertical-align: middle;
    position: relative;
    z-index: 1;
+   text-align: center;
+}
+
+.menublock > span {
+   @include clickable();
 }
 
 #menuline {

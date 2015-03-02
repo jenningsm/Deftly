@@ -125,6 +125,8 @@ void setup(){
    birds[i] = new Bird(j, random(2 * PI), bsize);
   }
 
+  window.parent.postMessage("tranquility", "*");
+
 }
 
 void draw(){

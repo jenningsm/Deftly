@@ -66,6 +66,7 @@ void setup(){
   restart();
   frameRate(60);
 
+  window.parent.postMessage("electrodynamics", "*");
 }
 
 void draw(){

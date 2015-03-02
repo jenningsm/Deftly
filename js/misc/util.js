@@ -19,3 +19,10 @@ function partial(func /*, 0..n args */) {
   };
 }
 
+function oneTimeListener(target, type, callback){
+  function oneTimeCallback(e){
+    target.removeEventListener(type, oneTimeCallback);
+    callback(e);
+  }
+  target.addEventListener(type, oneTimeCallback);
+}

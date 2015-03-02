@@ -1,5 +1,4 @@
 
-
 var m = mover(menuBar(false), 0);
 var menuPos = 0;
 function menu(target, speed, next){
@@ -33,7 +32,6 @@ var pages = {'about' : about, 'geometries' : geometries};
 
 function openPage(page){
   var seq = [];
-//  seq.push(partial(menu, 0, .05));
   seq.push(partial(banner, 0, nwtMotion(1.2, 0), .025));
   seq.push(partial(pages[page], 1, nwtMotion(0, 2), .02));
   sequence(seq);
@@ -50,8 +48,7 @@ function closePage(page){
 
 var speedScale = .75;
 
-function openDisplay(path){
-  loadDisplay(path);
+function openDisplay(sketch){
   
   function moveBanners(next){
     banner(.5, nwtMotion(3, 3), .0075 * speedScale, next);
@@ -60,12 +57,14 @@ function openDisplay(path){
   }
 
   menu(0, .05);
-  sequence([moveBanners, partial(disp, 1, uniformMotion(), .04)]); 
+  sequence([moveBanners, partial(loadDisplay, sketch), partial(disp, 1, uniformMotion(), .04)]); 
 }
 
 function closeDisplay(){
-  banner(1, nwtMotion(3, 3), .005 * speedScale);
-  titleText(1, uniformMotion(), .01 * speedScale);
-  bottomText(1, uniformMotion(), .02 * speedScale);
-  sequence([partial(disp, 0, uniformMotion(), .03), removeDisplay]);
+  function moveBanners(next){
+    banner(1, nwtMotion(3, 3), .0075 * speedScale, next);
+    titleText(1, uniformMotion(), .02 * speedScale);
+    bottomText(1, uniformMotion(), .04 * speedScale);
+  }
+  sequence([partial(disp, 0, uniformMotion(), .04), removeDisplay, moveBanners]);
 }

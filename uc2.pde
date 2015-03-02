@@ -225,7 +225,8 @@ class Mass {
   Mass(PVector po, bool spec){
     special = spec;
     pos = po;
-    weight = 1;
+    weight = 40;
+    targ = weight;
     theta = atan2(pos.y, pos.x);
   }
   

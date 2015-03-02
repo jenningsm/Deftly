@@ -315,7 +315,8 @@
 #sketchpad {
   height: 100%;
   width: 100%;
-  position: relative; }
+  position: relative;
+  opacity: 0; }
 
 #bulkstripe {
   width: 100%;

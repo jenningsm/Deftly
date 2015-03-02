@@ -28,6 +28,8 @@ function setup(){
 
   noLoop();
 
+  mover(opacity(document.getElementById("sketchpad")), 0)(1, uniformMotion(), .015);
+
 /*  var pcanvas = document.getElementById("defaultCanvas");
   var imgdata = pcanvas.getContext("2d").getImageData(0, 0, pcanvas.width, pcanvas.height);
   document.getElementById("backcanvas").getContext("2d").putImageData(imgdata, 0, 0);

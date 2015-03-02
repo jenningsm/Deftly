@@ -20,7 +20,7 @@ function opacity(element){
     if(last !== 0 && x === 0){
       element.style.display = 'none';
     } else if(last === 0 && x !== 0){
-      element.style.display = 'inline';
+      element.style.display = 'inherit';
     }
     last = x;
     element.style.opacity = x;

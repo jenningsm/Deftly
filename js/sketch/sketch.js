@@ -1,7 +1,9 @@
 var arcs = [];
 
 function setup(){
-  cvs = createCanvas(window.innerWidth, window.innerHeight);
+  var width = window.innerWidth;
+  var height = window.innerHeight;
+  cvs = createCanvas(width, height);
   cvs.parent("sketchpad");
   arcs = [];
 
@@ -17,7 +19,7 @@ function setup(){
     var dist = (.3 + Math.random() * 0 + (num - i) / (num * 1.5)) * standard;
     dist = Math.pow(dist, pow);
     var rad = maxRad / (1.5 + dist);
-    var radWidth = 250 / (1 + dist);
+    var radWidth = Math.sqrt(width*width + height*height) * .15 / (1 + dist);
     //radWidth *= radWidth * dist / (rad + (radWidth / 2) + dist);
     var rand = Math.random();
     var shade = Math.random() * 224 + 32;

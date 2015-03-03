@@ -38,9 +38,9 @@
       <div class="pagecontent" id="geometries">
         <div class="pagehead stripe">GEOMETRIES</div>
         <div class="bulk">
-          <div id="images"><img id="imageholder" src="tris/1.png" /></div>
-          <div id="leftbar" onclick="changeImage(false)" class="sidebar">&#10092;</div>
-          <div id="rightbar" onclick="changeImage(true);" class="sidebar">&#10093;</div>
+          <div id="images"><img id="imageholder"/></div>
+          <div id="leftbar" onclick="previousImage()" class="sidebar">&#10092;</div>
+          <div id="rightbar" onclick="nextImage();" class="sidebar">&#10093;</div>
         </div>
         <div class="pagefooter stripe" onclick="closePage('geometries')">
           <span class="page-footer-text">BACK</span>
@@ -93,7 +93,7 @@
   <script src="js/low/setters.js"></script>
   <script src="js/low/aggregates.js"></script>
   <script src="js/pageinterface.js"></script>
-  <script src="js/misc/images.js"></script>
+  <script src="js/images.js"></script>
   <script src="js/display.js"></script>
 </body>
 </html>

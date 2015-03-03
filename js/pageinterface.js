@@ -12,8 +12,22 @@ function menu(target, speed, next){
   }
 }
 
+var notYetOpened = true;
+var g = mover(fullPage("geometries", false), 0);
+function geometries(target, motion, speed, next){
+
+  var onPageOpen;
+  if(notYetOpened && target === 1){
+    onPageOpen = beginImages;
+    notYetOpened = false;;
+  } else {
+    onPageOpen = function(n) { n() };
+  }
+
+  sequence([partial(g, target, motion, speed), onPageOpen, next]);
+}
+
 var banner = mover(banners(true), 1);
-var geometries = mover(fullPage("geometries", false), 0);
 var about = mover(fullPage("aboutpage", false), 0);
 var titleText = mover(opacity(document.getElementById("headeropen")), 1);
 var disp = mover(display(false), 0);

@@ -6,7 +6,7 @@ window.requestAnimationFrame = window.requestAnimationFrame
  || function(f){setTimeout(f, 1000/60)};
 
 function sequence(functions){
-  if(functions.length != 0){
+  if(functions.length != 0 && functions[0] !== null && functions[0] !== undefined){
     functions[0](partial(sequence, functions.slice(1)));
   }
 }

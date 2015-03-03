@@ -14,13 +14,17 @@ function sidefade(element){
   }
 }
 
-function opacity(element){
+function opacity(element, display){
   var last = -1;
   return function(x){
     if(last !== 0 && x === 0){
       element.style.display = 'none';
     } else if(last === 0 && x !== 0){
-      element.style.display = 'inherit';
+      if(display === undefined){
+        element.style.display = 'inherit';
+      } else {
+        element.style.display = display;
+      }
     }
     last = x;
     element.style.opacity = x;

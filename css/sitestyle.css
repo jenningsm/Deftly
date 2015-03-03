@@ -19,7 +19,7 @@
   z-index: 1;
   border-top: 2px solid #808080;
   border-bottom: 2px solid #808080;
-  transform: scale(0, 0); }
+  transform: scale3d(0, 0, 1); }
 
 #menutext {
   font-size: 1.2em;
@@ -147,7 +147,7 @@
   z-index: 6;
   border-right: 3px solid #808080;
   border-left: 3px solid #808080;
-  transform: scale(0, 0); }
+  transform: scale3d(0, 0, 1); }
 
 .pagecontent {
   height: 100%;

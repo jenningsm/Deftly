@@ -29,14 +29,14 @@ function opacity(element){
 
 function scale(element, orientation){
   return function(x) {
-     element.style.transform = "scale(" + (orientation ? x : 1) + ", " + (orientation ? 1 : x) + ")";
+     element.style.transform = "scale3d(" + (orientation ? x : 1) + ", " + (orientation ? 1 : x) + ", 1)";
   }
 }
 
 function shift(element, shiftdir, orientation){
    return function(x) {
      var shift = (((1 - x) * 100) * (shiftdir ? -1 : 1));
-     element.style.transform = "translate(" + (orientation ? "0%" : shift + "%") + ", " + (orientation ? shift + "%" : "0%") + ")";
+     element.style.transform = "translate3d(" + (orientation ? "0%" : shift + "%") + ", " + (orientation ? shift + "%" : "0%") + ", 0)";
    }
 }
 

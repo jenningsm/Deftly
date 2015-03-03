@@ -34,6 +34,8 @@ Mass[] masses;
 var width;
 var height;
 
+Boolean begun = false;
+
 void setup(){
 
   noLoop();
@@ -41,6 +43,7 @@ void setup(){
     if(e.data === "begin"){
       window.removeEventListener("message", goMessage);
       begin();
+      begun = true;
     }
   }
 
@@ -146,51 +149,51 @@ void begin(){
 }
 
 void draw(){
-
-  count++;
- 
-  image(backg, 0, 0);
-
-  for(int i = 0; i < 6; i++){
-    masses[i].stp();
-  }
-
-  fill(0, min(count, 244));
-  noStroke();
-  bool release = ((count % RELEASE) == 0);   
-  for(int i = 0; i < NUM; i++){
-    birds[i].step(release);
-  }
-  for(int i = 0; i < NUM; i++){
-    birds[i].drw();
-  }
- 
-  for(int i = 0; i < 6; i++){
-    masses[i].drw2();
-  }
-
-  //fill(255, max(255 - count * 150.0 / FRATE, 0));
-  //rect(0, 0, width, height);
-
+  if(begun){
+    count++;
+   
+    image(backg, 0, 0);
+  
+    for(int i = 0; i < 6; i++){
+      masses[i].stp();
+    }
+  
+    fill(0, min(count, 244));
+    noStroke();
+    bool release = ((count % RELEASE) == 0);   
+    for(int i = 0; i < NUM; i++){
+      birds[i].step(release);
+    }
+    for(int i = 0; i < NUM; i++){
+      birds[i].drw();
+    }
+   
+    for(int i = 0; i < 6; i++){
+      masses[i].drw2();
+    }
+  
+    //fill(255, max(255 - count * 150.0 / FRATE, 0));
+    //rect(0, 0, width, height);
+  } 
 }
 
 
-void setA(float n){
+function setA(n){
   masses[0].setMass(n * 4);
 }
-void setB(float n){
+function setB(n){
   masses[1].setMass(n * 5);
 }
-void setC(float n){
+function setC(float n){
   masses[2].setMass(n * 100);
 }
-void setD(float n){
+function setD(float n){
   masses[3].setMass(n * 100.0 / 14);
 }
-void setEF(float n){
+function setEF(float n){
   masses[4].setMass(n / 4.67);
 }
-void setEG(float n){
+function setEG(float n){
   masses[5].setMass(n / 4.67);
 }
 
@@ -459,18 +462,13 @@ class Bird {
 
   socket_ = new WebSocket('ws://literature.uncontext.com:80');
   socket_.onmessage = function (e) {
-    setA(JSON.parse(e.data).a);
-    setB(JSON.parse(e.data).b);
-    setC(JSON.parse(e.data).c);
-    setD(JSON.parse(e.data).d);
-    setEF(JSON.parse(e.data).e.f);
-    setEG(JSON.parse(e.data).e.g);
+    if(begun){
+      setA(JSON.parse(e.data).a);
+      setB(JSON.parse(e.data).b);
+      setC(JSON.parse(e.data).c);
+      setD(JSON.parse(e.data).d);
+      setEF(JSON.parse(e.data).e.f);
+      setEG(JSON.parse(e.data).e.g);
+    }
  };
 
-  function stopSketch(){
-    noLoop();
-  }
-
-  function startSketch(){
-    loop();
-  }

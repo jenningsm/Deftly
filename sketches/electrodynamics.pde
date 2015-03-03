@@ -25,6 +25,8 @@ int SIZE_Y = 720;
 
 Boolean leaderDown;
 
+Boolean begun = false;
+
 void setup(){
 
   noLoop();
@@ -33,6 +35,7 @@ void setup(){
     if(e.data === "begin"){
       window.removeEventListener("message", goMessage);
       begin();
+      begun = true;
     }
   }
 
@@ -83,31 +86,31 @@ void begin(){
 }
 
 void draw(){
-  //hold.beginDraw();
-  for(int i = 0; i < l.length; i++){
-    if(!l[i].step()){
-      l.splice(i, 1);
-      if((i == 0 || i == 1) && !leaderDown){
-        leaderDown = true;
+  if(begun){
+    for(int i = 0; i < l.length; i++){
+      if(!l[i].step()){
+        l.splice(i, 1);
+        if((i == 0 || i == 1) && !leaderDown){
+          leaderDown = true;
+        }
       }
     }
-  }
-  if(leaderDown){
-    count++;
-  }
-
-  opacity = count * curSpeed * .01;
-  if(opacity > 0){
-    back(true, 4 + opacity * opacity * opacity * .07);
-  }
+    if(leaderDown){
+      count++;
+    }
   
- // back(false, max(64 - count , 0));
-  
-  if(opacity > 10){
-    l = [];
-    restart();
-  }
-
+    opacity = count * curSpeed * .01;
+    if(opacity > 0){
+      back(true, 4 + opacity * opacity * opacity * .07);
+    }
+    
+   // back(false, max(64 - count , 0));
+    
+    if(opacity > 10){
+      l = [];
+      restart();
+    }
+  } 
 }
 
 void back(Boolean dir, float op){

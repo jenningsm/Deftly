@@ -10,7 +10,7 @@ final float START = .75;
 final float SPREAD = 0;
 final float RELEASE = 400;
 final float MSIZE = 120;
-final int FRATE = 30;
+final int FRATE = 24;
 
 
 final int NGREYS = 2;
@@ -61,7 +61,9 @@ void begin(){
 
   rad = min(width / 2, height / 2) * (1 / 1.2);
   
-  speed = rad / 11.67;
+  //speed = rad / 11.67;
+  speed = rad / 15.67;
+
   frameSpeed = speed / FRATE;
   greywidth = rad / 43;
 

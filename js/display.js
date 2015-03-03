@@ -6,7 +6,7 @@ function loadDisplay(sketch, next){
   spot.style.opacity = 0;
   spot.style.display = "inline";
   var iframe = document.createElement("iframe");
-  iframe.setAttribute("src", sketchMap[sketch]);
+  iframe.setAttribute("src", "sketches/" +  sketchMap[sketch]);
   iframe.setAttribute("id", "displayframe");
   spot.appendChild(iframe);
 

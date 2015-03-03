@@ -36,6 +36,20 @@ var height;
 
 void setup(){
 
+  noLoop();
+  function goMessage(e){
+    if(e.data === "begin"){
+      window.removeEventListener("message", goMessage);
+      begin();
+    }
+  }
+
+  window.addEventListener("message", goMessage);
+
+}
+
+void begin(){
+
   var mycvs = document.getElementById("sketchContainer");
   width = window.innerWidth;;
   height = window.innerHeight;
@@ -126,6 +140,8 @@ void setup(){
   }
 
   window.parent.postMessage("tranquility", "*");
+
+  loop();
 
 }
 

@@ -25,11 +25,22 @@ int SIZE_Y = 720;
 
 Boolean leaderDown;
 
-boolean sketchFullScreen(){
-  return true;
+void setup(){
+
+  noLoop();
+
+  function goMessage(e){
+    if(e.data === "begin"){
+      window.removeEventListener("message", goMessage);
+      begin();
+    }
+  }
+
+  window.addEventListener("message", goMessage);
+
 }
 
-void setup(){
+void begin(){
   
   SIZE_X = window.innerWidth;
   SIZE_Y = window.innerHeight;
@@ -67,6 +78,8 @@ void setup(){
   frameRate(60);
 
   window.parent.postMessage("electrodynamics", "*");
+ 
+  loop();
 }
 
 void draw(){
@@ -94,7 +107,7 @@ void draw(){
     l = [];
     restart();
   }
-  
+
 }
 
 void back(Boolean dir, float op){

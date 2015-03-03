@@ -49,7 +49,9 @@ function closePage(page){
 var speedScale = .75;
 
 function openDisplay(sketch){
-  
+ 
+  var showDisplay = loadDisplay(sketch);
+ 
   function moveBanners(next){
     banner(.5, nwtMotion(3, 3), .0075 * speedScale, next);
     titleText(0, uniformMotion(), .04 * speedScale);
@@ -57,7 +59,7 @@ function openDisplay(sketch){
   }
 
   menu(0, .05);
-  sequence([moveBanners, partial(loadDisplay, sketch), partial(disp, 1, uniformMotion(), .04)]); 
+  sequence([moveBanners, showDisplay, partial(disp, 1, uniformMotion(), .04)]); 
 }
 
 function closeDisplay(){

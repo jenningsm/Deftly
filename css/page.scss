@@ -4,6 +4,7 @@
   z-index: 6;
   border-right: 3px solid #808080;
   border-left: 3px solid #808080;
+  transform: scale(0, 0);
 }
 
 .pagecontent {
@@ -15,6 +16,7 @@
   position: absolute;
   left: 0%;
   z-index: 5;
+  clip: rect(0, 0, 0, 0);
 }
 
 #page {

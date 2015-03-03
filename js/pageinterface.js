@@ -63,7 +63,7 @@ function openDisplay(sketch){
 function closeDisplay(){
   function moveBanners(next){
     banner(1, nwtMotion(3, 3), .0075 * speedScale, next);
-    titleText(1, uniformMotion(), .02 * speedScale);
+    titleText(1, uniformMotion(), .01 * speedScale);
     bottomText(1, uniformMotion(), .04 * speedScale);
   }
   sequence([partial(disp, 0, uniformMotion(), .04), removeDisplay, moveBanners]);

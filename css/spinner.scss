@@ -1,0 +1,77 @@
+
+#spinner {
+  position: absolute;
+  $height: 4%;
+  height: $height;
+  top: (100% - $height) / 2;
+  z-index: 10;
+  left: 50%;
+  width: 10%;
+  transform: translate(-50%, 0) scale(1.2, 1.2);
+  background: rgba(255, 255, 255, .7);
+  border-radius: 2px;
+
+  display: none;
+  opacity: 0;
+}
+
+.with-shadow{
+  $box-shadow: 0 0 10px #b0b0b0;
+  -moz-box-shadow: $box-shadow;
+  -webkit-box-shadow: $box-shadow;
+  box-shadow: $box-shadow;
+}
+
+$passive-color: #404040;
+$active-color: white;
+
+@-webkit-keyframes colorchange {
+  0%, 40%, 100% { background-color: $passive-color }
+  20% { background-color: $active-color }
+}
+@keyframes colorchange {
+  0%, 40%, 100% { background-color: $passive-color }
+  20% { background-color: $active-color }
+}
+
+$animation-time: 3s;
+$num-boxes: 5;
+
+@mixin spinner-box($box){
+  $animation-delay: ($animation-time / $num-boxes) * $box * .7;
+  -webkit-animation: colorchange $animation-time linear $animation-delay infinite normal;
+  animation: colorchange $animation-time linear $animation-delay infinite normal;
+
+  background-color: $passive-color;
+
+  position: absolute;
+  $diameter: 10px;
+  width: $diameter;
+  $unit: (100% / ($num-boxes + 1));
+  left: $unit * ($box + 1);
+  transform: translate(-50%, -50%);
+  height: $diameter;
+  top: 50%;
+
+  border-radius: 100%;
+}
+
+#spinnerone {
+  @include spinner-box(0);
+}
+#spinnertwo {
+  @include spinner-box(1);
+}
+#spinnerthree {
+  @include spinner-box(2);
+}
+#spinnerfour {
+  @include spinner-box(3);
+}
+#spinnerfive {
+  @include spinner-box(4);
+}
+
+
+
+

@@ -1,5 +1,14 @@
 function mover(aggregate, pos){
+  var stopLastMotion = null;
+
   return function(target, motion, speed, next){
+
+    if(stopLastMotion !== null){
+      stopLastMotion();
+    }
+    stopLastMotion = function(){
+      target = pos;
+    }
     var posHold = pos;
     var x = 0;
     if(target !== pos){
@@ -18,11 +27,11 @@ function mover(aggregate, pos){
         }
       }
       requestAnimationFrame(move);
-      return speed;
+//      return speed;
     } else {
       if(next !== undefined)
         next();
-      return 0;
+//      return 0;
     }
   }
 }

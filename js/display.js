@@ -12,6 +12,8 @@ var sketchMap = {"tranquility" : "uncontext1.html", "electrodynamics" : "unconte
    the parent. Once this message is recieved, the sketch is faded in
 */
 
+var stopSpinner = null;
+
 function loadDisplay(sketch){
   var spot = document.getElementById("sketchspot"); 
   spot.style.opacity = 0;
@@ -24,16 +26,19 @@ function loadDisplay(sketch){
 
   function beginSketch(next){
 
+    stopSpinner = spinner(true, .05);
+
     function sketchLoaded(e){
       if(e.data === sketch){
         window.removeEventListener("message", sketchLoaded);
-        next();
+        stopSpinner(.05, next);
       }
     }
     window.addEventListener("message", sketchLoaded);
 
     var w = iframe.contentWindow || iframe;
     w.postMessage("begin", "*"); 
+ //   setTimeout(function() { w.postMessage("begin", "*"); }, 2000);
   }
 
   return beginSketch;
@@ -41,7 +46,8 @@ function loadDisplay(sketch){
 
 function removeDisplay(next){
   document.getElementById("sketchspot").removeChild(document.getElementById("displayframe"));
-  if(next !== undefined){
-    next();
+  if(stopSpinner != null){
+    stopSpinner(.05, next);
+    stopSpinner = null;
   }
 }

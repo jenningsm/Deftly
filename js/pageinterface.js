@@ -16,15 +16,22 @@ var notYetOpened = true;
 var g = mover(fullPage("geometries", false), 0);
 function geometries(target, motion, speed, next){
 
-  var onPageOpen;
+  var after;
   if(notYetOpened && target === 1){
-    onPageOpen = beginImages;
+    after = beginImages;
     notYetOpened = false;;
   } else {
-    onPageOpen = function(n) { n() };
+    after = function(n) { n() };
   }
 
-  sequence([partial(g, target, motion, speed), onPageOpen, next]);
+  var before;
+  if(target === 0){
+    before = closeGeometries;
+  } else {
+    before = function(next) { next() };
+  }
+
+  sequence([before, partial(g, target, motion, speed), after, next]);
 }
 
 var banner = mover(banners(true), 1);

@@ -15,6 +15,16 @@ images.push('ntri.png');
 images.push('10.png');
 images.push('shallowdark53.9423181.3611549E7.png');
 
+var stopSpinner = null;
+
+function closeGeometries(next){
+  if(stopSpinner !== null){
+    stopSpinner(.05, next);
+  } else {
+    next();
+  }
+}
+
 var loaded = [];
 for(var i = 0; i < images.length; i++){
   loaded[i] = false;
@@ -30,8 +40,17 @@ function loadMyImage(num){
 }
 
 function setImage(num, next){
+
+  stopSpinner = spinner(false, .05);
+
+  function onLoaded(){
+    stopSpinner(.05, next);
+    stopSpinner = null;
+  }
+
   if(num >= 0 && num < images.length) {
-    oneTimeListener(imgElement, 'load', next);
+    oneTimeListener(imgElement, 'load', onLoaded);
+    //setTimeout(function() { imgElement.src = imagepath + images[num]; }, 2000);
     imgElement.src = imagepath + images[num];
   }
   if(num > 0){

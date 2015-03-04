@@ -298,6 +298,94 @@
   text-align: center;
   vertical-align: middle; }
 
+#spinner {
+  position: absolute;
+  height: 4%;
+  top: 48%;
+  z-index: 10;
+  left: 50%;
+  width: 10%;
+  transform: translate(-50%, 0) scale(1.2, 1.2);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 2px;
+  display: none;
+  opacity: 0; }
+
+.with-shadow {
+  -moz-box-shadow: 0 0 10px #b0b0b0;
+  -webkit-box-shadow: 0 0 10px #b0b0b0;
+  box-shadow: 0 0 10px #b0b0b0; }
+
+@-webkit-keyframes colorchange {
+  0%, 40%, 100% {
+    background-color: #404040; }
+  20% {
+    background-color: white; } }
+@keyframes colorchange {
+  0%, 40%, 100% {
+    background-color: #404040; }
+  20% {
+    background-color: white; } }
+#spinnerone {
+  -webkit-animation: colorchange 3s linear 0s infinite normal;
+  animation: colorchange 3s linear 0s infinite normal;
+  background-color: #404040;
+  position: absolute;
+  width: 10px;
+  left: 16.66667%;
+  transform: translate(-50%, -50%);
+  height: 10px;
+  top: 50%;
+  border-radius: 100%; }
+
+#spinnertwo {
+  -webkit-animation: colorchange 3s linear 0.42s infinite normal;
+  animation: colorchange 3s linear 0.42s infinite normal;
+  background-color: #404040;
+  position: absolute;
+  width: 10px;
+  left: 33.33333%;
+  transform: translate(-50%, -50%);
+  height: 10px;
+  top: 50%;
+  border-radius: 100%; }
+
+#spinnerthree {
+  -webkit-animation: colorchange 3s linear 0.84s infinite normal;
+  animation: colorchange 3s linear 0.84s infinite normal;
+  background-color: #404040;
+  position: absolute;
+  width: 10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 10px;
+  top: 50%;
+  border-radius: 100%; }
+
+#spinnerfour {
+  -webkit-animation: colorchange 3s linear 1.26s infinite normal;
+  animation: colorchange 3s linear 1.26s infinite normal;
+  background-color: #404040;
+  position: absolute;
+  width: 10px;
+  left: 66.66667%;
+  transform: translate(-50%, -50%);
+  height: 10px;
+  top: 50%;
+  border-radius: 100%; }
+
+#spinnerfive {
+  -webkit-animation: colorchange 3s linear 1.68s infinite normal;
+  animation: colorchange 3s linear 1.68s infinite normal;
+  background-color: #404040;
+  position: absolute;
+  width: 10px;
+  left: 83.33333%;
+  transform: translate(-50%, -50%);
+  height: 10px;
+  top: 50%;
+  border-radius: 100%; }
+
 .stripe::before {
   left: 0;
   content: '';
@@ -357,3 +445,5 @@ html, body {
 a {
   color: black;
   outline: none; }
+
+/*# sourceMappingURL=sitestyle.css.map */

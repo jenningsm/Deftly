@@ -60,7 +60,7 @@ function closePage(page){
 }
 
 
-var speedScale = .75;
+var speedScale = 1;
 
 function openDisplay(sketch){
  

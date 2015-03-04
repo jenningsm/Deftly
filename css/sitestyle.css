@@ -350,12 +350,10 @@
 html, body {
   overflow: hidden;
   font-family: 'Oswald', sans-serif;
-  background-color: #FFFFFF;
+  background-color: #F0F0F0;
   margin: 0px;
   padding: 0px; }
 
 a {
   color: black;
   outline: none; }
-
-/*# sourceMappingURL=sitestyle.css.map */

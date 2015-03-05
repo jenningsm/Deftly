@@ -7,7 +7,7 @@ function mover(aggregate, pos){
       stopLastMotion();
     }
     stopLastMotion = function(){
-      target = pos;
+      x = -1;
     }
     var posHold = pos;
     var x = 0;
@@ -19,7 +19,7 @@ function mover(aggregate, pos){
           aggregate(target);
           if(next !== undefined)
             next();
-        } else {
+        } else if (x >= 0) {
           pos = posHold + (target - posHold) * motion(x);
           aggregate(pos);
           x += speed;

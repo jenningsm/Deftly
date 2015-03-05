@@ -19,7 +19,7 @@ function fullPage(pg, display){
   var page  = document.getElementById(pg);
   var border  = document.getElementById("borderbox");
   
-  var c = clip(page, true, page.offsetWidth, page.offsetHeight);
+  var c = clip(page, true);
   var s = scale(border, true);
   var f = sidefade(page);
 
@@ -32,7 +32,7 @@ function fullPage(pg, display){
 function menuBar(display){
   var bar = document.getElementById("menubar");
   var border = document.getElementById("menuborder");
-  var c = clip(bar, false, bar.offsetWidth, bar.offsetHeight);
+  var c = clip(bar, false);
   var s = scale(border, false);
 
   var ret = function(x) { s(x); c(x); };

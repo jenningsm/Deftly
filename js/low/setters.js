@@ -1,11 +1,27 @@
-function clip(element, orientation, width, height){
-  return function(x) {
+function clip(element, orientation){
+  var width = element.offsetWidth;
+  var height = element.offsetHeight;
+  var currentClip = null;
+
+  function clipit(x) {
+     currentClip = x;
      var left = (orientation ? width * (1 - x) / 2 : 0);
      var right = (orientation ? width * x + left : width);
      var tp = (orientation ? 0 : height * (1 - x) / 2);
      var bottom = (orientation ? height : height * x + tp);
      element.style.clip = "rect(" + tp + "px, " + right + "px, " + bottom + "px, " + left + ")";
   }
+
+  function onResize(){
+    width = element.offsetWidth;
+    height = element.offsetHeight;
+    clipit(currentClip);
+  }
+
+  window.addEventListener('resize', onResize);
+
+  return clipit;
+
 }
 
 function sidefade(element){

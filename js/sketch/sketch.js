@@ -1,8 +1,9 @@
 var arcs = [];
 
+stopBackSpinner = spinner(false, .05);
+
 function setup(){
 
-  var stopSpinner = spinner(false, .05);
 
   var width = window.innerWidth;
   var height = window.innerHeight;
@@ -40,7 +41,7 @@ function setup(){
     mover(opacity(document.getElementById("sketchpad")), 0)(1, uniformMotion(), .015);
   }
 
-  stopSpinner(.05, fadeIn);
+  stopBackSpinner(.05, fadeIn);
 
 /*  function stop(){
     stopSpinner(.05, fadeIn);

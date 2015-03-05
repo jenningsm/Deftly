@@ -1,10 +1,10 @@
 var ANGRES = .03;
 
-function Arc(rotWidth, rotPos,  radWidth, radius, rotSpeed, color){
+function Arc(center, rotWidth, rotPos,  radWidth, radius, rotSpeed, color){
   this.trigs = [Math.cos(rotSpeed), Math.sin(rotSpeed)];
   this.points = [];
   this.color = color;
-  this.center = [document.getElementById("sketchpad").clientWidth / 2, document.getElementById("sketchpad").clientHeight / 2];
+//  this.center = [document.getElementById("sketchpad").clientWidth / 2, document.getElementById("sketchpad").clientHeight / 2];
 
   var numSteps = rotWidth / ANGRES;
 
@@ -13,6 +13,8 @@ function Arc(rotWidth, rotPos,  radWidth, radius, rotSpeed, color){
   
   var cosPlus = Math.cos(ANGRES);
   var sinPlus = Math.sin(ANGRES);
+
+  this.center = center;
 
   for(var i = 0; i < numSteps; i++){
 

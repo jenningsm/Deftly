@@ -1,6 +1,9 @@
 var arcs = [];
 
 function setup(){
+
+  var stopSpinner = spinner(false, .05);
+
   var width = window.innerWidth;
   var height = window.innerHeight;
   var dim = Math.max(width, height);
@@ -33,8 +36,18 @@ function setup(){
 
   noLoop();
 
-  mover(opacity(document.getElementById("sketchpad")), 0)(1, uniformMotion(), .015);
+  function fadeIn(){
+    mover(opacity(document.getElementById("sketchpad")), 0)(1, uniformMotion(), .015);
+  }
 
+  stopSpinner(.05, fadeIn);
+
+/*  function stop(){
+    stopSpinner(.05, fadeIn);
+  }
+ 
+  setTimeout(stop, 3000);
+*/
 /*  var pcanvas = document.getElementById("defaultCanvas");
   var imgdata = pcanvas.getContext("2d").getImageData(0, 0, pcanvas.width, pcanvas.height);
   document.getElementById("backcanvas").getContext("2d").putImageData(imgdata, 0, 0);

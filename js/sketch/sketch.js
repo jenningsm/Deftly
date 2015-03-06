@@ -42,9 +42,9 @@ function setup(){
   }
 
   stopBackSpinner(.05, fadeIn);
-
-/*  function stop(){
-    stopSpinner(.05, fadeIn);
+/*
+  function stop(){
+    stopBackSpinner(.05, fadeIn);
   }
  
   setTimeout(stop, 3000);

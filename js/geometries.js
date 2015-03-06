@@ -25,18 +25,10 @@ function closeGeometries(next){
   }
 }
 
-var loaded = [];
-for(var i = 0; i < images.length; i++){
-  loaded[i] = false;
-}
-
 function loadMyImage(num){
-  if(!loaded[num]){
-    var img = new Image();
-    oneTimeListener(img, 'load', function() { img = null;});
-    img.src = imagepath + images[num];
-    loaded[num] = true;
-  }
+  var img = new Image();
+  oneTimeListener(img, 'load', function() { img = null;});
+  img.src = imagepath + images[num];
 }
 
 function setImage(num, next){

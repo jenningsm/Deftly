@@ -13,6 +13,8 @@
  right: 0%;
 }
 
+$side-bar-width: 10%;
+
 .sidebar {
 
   @include clickable();
@@ -21,7 +23,7 @@
   position: absolute;
   top: 0%;
   height: 100%;
-  width : 10%;
+  width : $side-bar-width;
 
   font-size: 4em;
   text-shadow: 0 0 2px #FFFFFF;
@@ -35,7 +37,8 @@
 
 #images {
   position: absolute;
-  width: 100%;
+  width: 100% - 2 * $side-bar-width;
+  left: $side-bar-width;
   height: 100%;
   z-index: 4;
   overflow: hidden;

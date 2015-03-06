@@ -61,19 +61,20 @@ function changeImage(num, next){
 
   var speed = .04;
 
-  function fadeIn(next){
-    imgFader(1, uniformMotion(), speed * .5, next);
+  function fadeIn(n){
+    imgFader(1, uniformMotion(), speed * .5, n);
   }
 
-  function fadeOut(next){
+  function fadeOut(n){
     if(imgElement.src !== null){
-      imgFader(0, uniformMotion(), speed, next);
+      imgFader(0, uniformMotion(), speed, n);
     } else {
-      next();
+      n();
     }
   }
 
   sequence([fadeOut, partial(setImage, num), fadeIn, next]);
+
 }
 
 

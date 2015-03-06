@@ -45,12 +45,9 @@ function setImage(num, next){
     //setTimeout(function() { imgElement.src = imagepath + images[num]; }, 2000);
     imgElement.src = imagepath + images[num];
   }
-  if(num > 0){
-    loadMyImage(num - 1);
-  }
-  if(num < images.length - 1){
-    loadMyImage(num + 1);
-  }
+
+  loadMyImage((num - 1 + images.length) % images.length);
+  loadMyImage((num + 1) % images.length);
 }
 
 

@@ -23,7 +23,6 @@ function loadDisplay(sketch){
   iframe.setAttribute("id", "displayframe");
   spot.appendChild(iframe);
 
-
   function beginSketch(next){
 
     stopSpinner = spinner(true, .05);
@@ -34,10 +33,14 @@ function loadDisplay(sketch){
         stopSpinner(.05, next);
       }
     }
-    window.addEventListener("message", sketchLoaded);
 
     var w = iframe.contentWindow || iframe;
-    w.postMessage("begin", "*"); 
+    if(w.postMessage){
+      window.addEventListener("message", sketchLoaded);
+      w.postMessage("begin", "*"); 
+    } else {
+      stopSpinner(.05, function() { next(1) });
+    }
  //   setTimeout(function() { w.postMessage("begin", "*"); }, 2000);
   }
 
@@ -49,5 +52,7 @@ function removeDisplay(next){
   if(stopSpinner != null){
     stopSpinner(.05, next);
     stopSpinner = null;
+  } else {
+    next(0);
   }
 }

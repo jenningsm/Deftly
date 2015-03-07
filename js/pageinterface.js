@@ -24,7 +24,7 @@ scenes.electrodynamics = function(next) { openDisplay('electrodynamics', next) }
 
 var nextScene = null;
 function switchScenes(scene, next){
-  sequence([close, scenes[scene], next]);
+  sequence([close, scenes[scene]], next);
 }
 
 var root = '/ws';
@@ -40,8 +40,13 @@ function toScene(scene, next){
     } else {
       history.pushState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
     }
-    //switchScenes(scene, next);
-    sequence([function(n) { switchScenes(scene, n) }, function(n) { locked = false; n() }, next]);
+    function chainEnd(s){
+      locked = false;
+      if(validFunc(next)){
+        next(s);
+      }
+    }
+    sequence([function(n) { switchScenes(scene, n) }], chainEnd);
   }
 }
 
@@ -64,8 +69,7 @@ function openPage(page, next){
   var seq = [];
   seq.push(partial(banner, 0, nwtMotion(1.2, 0), .025));
   seq.push(partial(pages[page], 1, nwtMotion(0, 2), .02));
-  seq.push(next);
-  sequence(seq);
+  sequence(seq, next);
   menu(0, .05);
 }
 
@@ -74,8 +78,7 @@ function closePage(page, next){
   var seq = [];
   seq.push(partial(pages[page], 0, nwtMotion(2, 0), .02));
   seq.push(partial(banner, 1, nwtMotion(0, 1.2), .025));
-  seq.push(next);
-  sequence(seq);
+  sequence(seq, next);
 }
 
 
@@ -89,14 +92,14 @@ function openDisplay(sketch, next){
 
   var showDisplay = loadDisplay(sketch);
  
-  function moveBanners(next){
-    banner(.5, nwtMotion(3, 3), .0075 * speedScale, next);
+  function moveBanners(n){
+    banner(.5, nwtMotion(3, 3), .0075 * speedScale, n);
     titleText(0, uniformMotion(), .04 * speedScale);
     bottomText(0, uniformMotion(), .04 * speedScale);
   }
 
   menu(0, .05);
-  sequence([moveBanners, showDisplay, partial(disp, 1, uniformMotion(), .04), next]); 
+  sequence([moveBanners, showDisplay, partial(disp, 1, uniformMotion(), .04)], next); 
 }
 
 function closeDisplay(next){
@@ -106,5 +109,5 @@ function closeDisplay(next){
     titleText(1, uniformMotion(), .01 * speedScale);
     bottomText(1, uniformMotion(), .04 * speedScale);
   }
-  sequence([partial(disp, 0, uniformMotion(), .04), removeDisplay, moveBanners, next]);
+  sequence([partial(disp, 0, uniformMotion(), .04), removeDisplay, moveBanners], next);
 }

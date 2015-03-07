@@ -26,9 +26,14 @@ function validFunc(func){
   return (func !== null && func !== undefined);
 }
 
-function sequenceHelper(functions, chaincb, s){
+function riv(func){
+  if(validFunc(func))
+    func();
+}
+
+function sequence(functions, chaincb, s){
   if(functions.length !== 0 && validFunc(functions[0]) && s !== 1){
-      functions[0](partial(sequenceHelper, functions.slice(1), chaincb));
+      functions[0](partial(sequence, functions.slice(1), chaincb));
   } else if(validFunc(chaincb)){
       if(s === 1){
         chaincb(1);
@@ -36,8 +41,4 @@ function sequenceHelper(functions, chaincb, s){
         chaincb(0);
       }
   }
-}
-
-function sequence(functions, chaincb){
-  sequenceHelper(functions, chaincb, 0);
 }

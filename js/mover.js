@@ -25,7 +25,8 @@ function mover(aggregate, pos){
           x += speed;
           requestAnimationFrame(move);
         } else {
-          sequence([next]);
+          if(validFunc(next))
+            next(1);
         }
       }
       requestAnimationFrame(move);

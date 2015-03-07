@@ -30,7 +30,12 @@ var root = '/ws';
 
 var first = true;
 function toScene(scene, next){
-  history.pushState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
+  if(first){
+    history.replaceState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
+    first = false;
+  } else {
+    history.pushState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
+  }
   switchScenes(scene, next);
 }
 

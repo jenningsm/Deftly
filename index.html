@@ -13,7 +13,7 @@
     <div class="bar" id="header">
       <div id="headeropen">
         <span class="sidetext" id="works" onclick="menu(-1, .035);">SKETCHES</span>
-        <span class="sidetext" id="about" onclick="openPage('about');">ABOUT</span>
+        <span class="sidetext" id="about" onclick="toScene('about');">ABOUT</span>
         <span class="centertext" id="title">DEFTLY</span>
       </div>
     </div>
@@ -25,9 +25,9 @@
       <div id="menubar">
         <div id="menuborder"></div>
         <div id="menutext">
-          <div class="menublock"><span onclick="openDisplay('electrodynamics')">Electrodynamics</span></div>
-          <div class="menublock"><span onclick="openDisplay('tranquility')">Tranquility</span></div>
-          <div class="menublock"><span onclick="openPage('geometries')">Geometries</span></div>
+          <div class="menublock"><span onclick="toScene('electrodynamics')">Electrodynamics</span></div>
+          <div class="menublock"><span onclick="toScene('tranquility')">Tranquility</span></div>
+          <div class="menublock"><span onclick="toScene('geometries')">Geometries</span></div>
         </div>
         <div id="menuline"></div>
       </div>
@@ -42,8 +42,8 @@
           <div id="leftbar" onclick="previousImage()" class="sidebar">&#10092;</div>
           <div id="rightbar" onclick="nextImage();" class="sidebar">&#10093;</div>
         </div>
-        <div class="pagefooter stripe" onclick="closePage('geometries')">
-          <span class="page-footer-text">BACK</span>
+        <div class="pagefooter stripe">
+          <span class="page-footer-text" onclick="toScene('index')">BACK</span>
         </div>
       </div>
 
@@ -71,15 +71,15 @@
             </div>
           </div>
         </div>
-        <div class="pagefooter stripe" onclick="closePage('about')">
-          <span class="page-footer-text">BACK</span>
+        <div class="pagefooter stripe">
+          <span class="page-footer-text" onclick="toScene('index')">BACK</span>
         </div>
       </div>
     </div>
 
     <div class="bar" id="footer">
       <span class="centertext bottomtext" id="open">GENERATIVE SKETCHES</span>
-      <span class="centertext bottomtext" id="back" onclick="closeDisplay()">BACK</span>
+      <span class="centertext bottomtext" id="back" onclick="toScene('index')">BACK</span>
     </div>
 
     <div id="spinner">
@@ -100,6 +100,7 @@
   <script src="js/spinner.js"></script>
   <script src="js/sketch/arc.js"></script>
   <script src="js/sketch/sketch.js"></script>
+  <script src="js/mover-aggregates.js"></script>
   <script src="js/pageinterface.js"></script>
   <script src="js/geometries.js"></script>
   <script src="js/display.js"></script>

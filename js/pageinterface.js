@@ -30,14 +30,17 @@ var root = '/ws';
 
 var first = true;
 function toScene(scene, next){
-  if(first){
-    history.replaceState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
-    first = false;
-  } else {
-    history.pushState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
-  }
+  history.pushState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
   switchScenes(scene, next);
 }
+
+toScene('index');
+
+function onPopState(e){
+  switchScenes(e.state.scene);
+}
+
+window.addEventListener('popstate', onPopState);
 
 ////////////////////
 

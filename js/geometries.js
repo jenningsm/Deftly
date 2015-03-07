@@ -98,9 +98,10 @@ function previousImage(){
   changeImage(pos);
 }
 
-function beginImages(){
+function beginImages(next){
   loadMyImage(1);
   loadMyImage(images.length - 1);
+  next();
 }
 
 imgElement.src = imagepath + images[0];

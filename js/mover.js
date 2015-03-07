@@ -24,6 +24,8 @@ function mover(aggregate, pos){
           aggregate(pos);
           x += speed;
           requestAnimationFrame(move);
+        } else {
+          sequence([next]);
         }
       }
       requestAnimationFrame(move);

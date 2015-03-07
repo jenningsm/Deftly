@@ -22,21 +22,27 @@ scenes.tranquility = function(next) { openDisplay('tranquility', next) };
 scenes.electrodynamics = function(next) { openDisplay('electrodynamics', next) };
 
 
+var nextScene = null;
 function switchScenes(scene, next){
   sequence([close, scenes[scene], next]);
 }
 
 var root = '/ws';
 
+var locked = false;
 var first = true;
 function toScene(scene, next){
-  if(first){
-    history.replaceState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
-    first = false;
-  } else {
-    history.pushState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
+  if(!locked){
+    locked = true;
+    if(first){
+      history.replaceState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
+      first = false;
+    } else {
+      history.pushState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
+    }
+    //switchScenes(scene, next);
+    sequence([function(n) { switchScenes(scene, n) }, function(n) { locked = false; n() }, next]);
   }
-  switchScenes(scene, next);
 }
 
 toScene('index');

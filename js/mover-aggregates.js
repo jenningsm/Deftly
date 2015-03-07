@@ -25,7 +25,7 @@ function geometries(target, motion, speed, next){
   var after;
   if(notYetOpened && target === 1){
     after = beginImages;
-    notYetOpened = false;;
+    notYetOpened = false;
   } else {
     after = function(n) { n() };
   }

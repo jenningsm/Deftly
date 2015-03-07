@@ -5,11 +5,6 @@ window.requestAnimationFrame = window.requestAnimationFrame
  || window.msRequestAnimationFrame
  || function(f){setTimeout(f, 1000/60)};
 
-function sequence(functions){
-  if(functions.length != 0 && functions[0] !== null && functions[0] !== undefined){
-    functions[0](partial(sequence, functions.slice(1)));
-  }
-}
 
 function partial(func /*, 0..n args */) {
   var args = Array.prototype.slice.call(arguments, 1);
@@ -25,4 +20,24 @@ function oneTimeListener(target, type, callback){
     callback(e);
   }
   target.addEventListener(type, oneTimeCallback);
+}
+
+function validFunc(func){
+  return (func !== null && func !== undefined);
+}
+
+function sequenceHelper(functions, chaincb, s){
+  if(functions.length !== 0 && validFunc(functions[0]) && s !== 1){
+      functions[0](partial(sequenceHelper, functions.slice(1), chaincb));
+  } else if(validFunc(chaincb)){
+      if(s === 1){
+        chaincb(1);
+      } else {
+        chaincb(0);
+      }
+  }
+}
+
+function sequence(functions, chaincb){
+  sequenceHelper(functions, chaincb, 0);
 }

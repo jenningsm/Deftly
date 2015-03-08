@@ -5,8 +5,12 @@ stopBackSpinner = spinner(false, .05);
 function setup(){
 
 
-  var width = window.innerWidth;
-  var height = window.innerHeight;
+  var width = screen.width * window.devicePixelRatio;
+  var height = screen.height * window.devicePixelRatio;
+//  var height = window.screen.availHeight;
+//  var width = window.screen.availWidth;
+//  var width = window.innerWidth;
+//  var height = window.innerHeight;
   var dim = Math.max(width, height);
   cvs = createCanvas(dim, dim);
   cvs.parent("sketchpad");
@@ -17,9 +21,9 @@ function setup(){
   base = 255;
   background(base, base, base + 10);
 
-  var num = 280;
+  var num = 250;
   var pow = 5;
-  var standard = Math.pow(50, 1 /pow);
+  var standard = Math.pow(30, 1 /pow);
   var maxRad = Math.sqrt(Math.pow( window.innerWidth ,2) + Math.pow(window.innerHeight,2));
   blendMode(BLEND);
   for(var i = 0; i < num; i++){

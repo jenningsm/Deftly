@@ -1,13 +1,12 @@
 
 #spinner {
   position: absolute;
-  $height: 4%;
-  height: $height;
-  top: (100% - $height) / 2;
+  height: 35px;
+  width: 180px;
   z-index: 10;
   left: 50%;
-  width: 10%;
-  transform: translate(-50%, 0) scale(1.2, 1.2);
+  top: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 2px;
 
   display: none;
@@ -45,7 +44,7 @@ $num-boxes: 5;
   background-color: $passive-color;
 
   position: absolute;
-  $diameter: 10px;
+  $diameter: 12px;
   width: $diameter;
   $unit: (100% / ($num-boxes + 1));
   left: $unit * ($box + 1);

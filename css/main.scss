@@ -10,7 +10,8 @@
   position: absolute;
   background-color: #B0B0B0;
   opacity: .1;
-  bottom: 37%;
+  bottom: 39%;
+  //bottom: 37%;
   height: 18%;
   width: 100%;
   z-index: 1;
@@ -28,10 +29,7 @@
 #sketchpad {
   height: 100%;
   width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  position: relative;
+  position: absolute;
   opacity: 0;
 }
 
@@ -46,7 +44,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
 }
 
 #displayframe {

@@ -5,12 +5,12 @@ stopBackSpinner = spinner(false, .05);
 function setup(){
 
 
-  var width = screen.width * window.devicePixelRatio;
-  var height = screen.height * window.devicePixelRatio;
+//  var width = screen.width * window.devicePixelRatio;
+//  var height = screen.height * window.devicePixelRatio;
 //  var height = window.screen.availHeight;
 //  var width = window.screen.availWidth;
-//  var width = window.innerWidth;
-//  var height = window.innerHeight;
+  var width = window.innerWidth;
+  var height = window.innerHeight;
   var dim = Math.max(width, height);
   cvs = createCanvas(dim, dim);
   cvs.parent("sketchpad");
@@ -42,7 +42,17 @@ function setup(){
   noLoop();
 
   function fadeIn(){
-    mover(opacity(document.getElementById("sketchpad")), 0)(1, uniformMotion(), .015);
+    var canvasElement = document.getElementById("defaultCanvas");
+    var sketchpad = document.getElementById("sketchpad");
+    var backimg = document.getElementById("background-image");
+    
+    function onload(){
+      sketchpad.removeChild(canvasElement);
+      mover(opacity(sketchpad), 0)(1, uniformMotion(), .015);
+    }
+
+    backimg.addEventListener('load', onload);
+    backimg.src = canvasElement.toDataURL();
   }
 
   stopBackSpinner(.05, fadeIn);

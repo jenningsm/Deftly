@@ -33,7 +33,8 @@ function setup(){
     var dist = (.3 + (num - i) / (num * 1.5)) * standard;
     dist = Math.pow(dist, pow);
     var rad = maxRad / (1.5 + dist);
-    var radWidth = Math.sqrt(2 * dim * dim) * .12 / (1 + dist);
+    //var radWidth = Math.sqrt(2 * dim * dim) * .12 / (1 + dist);
+    var radWidth = Math.pow(2 * dim * dim, .25) * 6 / (1 + dist);
     //radWidth *= radWidth * dist / (rad + (radWidth / 2) + dist);
     var rand = Math.random();
     var shade = Math.random() * 224 + 32;

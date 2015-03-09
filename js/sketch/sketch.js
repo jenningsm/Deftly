@@ -4,14 +4,17 @@ stopBackSpinner = spinner(false, .05);
 
 function setup(){
 
+  function getDim(){
+    var width = window.innerWidth * window.devicePixelRatio;
+    var height = window.innerHeight * window.devicePixelRatio;
+    return Math.max(width, height);
+  }
 
-  var width = screen.width * window.devicePixelRatio;
-  var height = screen.height * window.devicePixelRatio;
 //  var height = window.screen.availHeight;
 //  var width = window.screen.availWidth;
 //  var width = window.innerWidth;
 //  var height = window.innerHeight;
-  var dim = Math.max(width, height);
+  var dim = getDim();
   cvs = createCanvas(dim, dim);
   cvs.parent("sketchpad");
   arcs = [];
@@ -46,6 +49,20 @@ function setup(){
   }
 
   stopBackSpinner(.05, fadeIn);
+
+  var canvasElement = document.getElementById('defaultCanvas');
+
+  function onResize(){
+    var ndim = getDim();
+    if(dim !== ndim){
+      dim = ndim;
+      canvasElement.style.width = dim + 'px';
+      canvasElement.style.height = dim + 'px';
+    }
+  }
+
+  window.addEventListener('resize', onResize);
+
 /*
   function stop(){
     stopBackSpinner(.05, fadeIn);

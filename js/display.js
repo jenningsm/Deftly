@@ -19,6 +19,10 @@ function loadDisplay(sketch){
   spot.style.opacity = 0;
   spot.style.display = "inline";
   var iframe = document.createElement("iframe");
+
+  var iframeloaded = false;
+  iframe.addEventListener('load', function() { iframeloaded = true });
+
   iframe.setAttribute("src", "sketches/" +  sketchMap[sketch]);
   iframe.setAttribute("id", "displayframe");
   spot.appendChild(iframe);
@@ -36,8 +40,15 @@ function loadDisplay(sketch){
 
     var w = iframe.contentWindow || iframe;
     if(w.postMessage){
-      window.addEventListener("message", sketchLoaded);
-      w.postMessage("begin", "*"); 
+      function begin(){
+        window.addEventListener("message", sketchLoaded);
+        w.postMessage("begin", "*");
+      }
+      if(iframeloaded){
+        begin();
+      } else {
+        iframe.addEventListener('load', begin);
+      }
     } else {
       stopSpinner(.05, function() { next(1) });
     }

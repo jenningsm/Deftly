@@ -22,11 +22,9 @@
 #page {
   position: absolute;
   height: 100%;
-  @media all and (min-width: 900px){
-    width: 70%;
-    left: 15%;
-  }
-  @media not all and (min-width: 900px){
+  width: 70%;
+  left: 15%;
+  @media only screen and (max-device-width: 800px){
     width: 85%;
     left: 7.5%;
   }

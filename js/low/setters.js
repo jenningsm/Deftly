@@ -35,7 +35,7 @@ function opacity(element, display){
   return function(x){
     if(last !== 0 && x === 0){
       element.style.display = 'none';
-    } else if(last === 0 && x !== 0){
+    } else if((last === 0 || last === -1) && x !== 0){
       if(display === undefined){
         element.style.display = 'inherit';
       } else {

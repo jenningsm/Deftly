@@ -4,7 +4,7 @@ function banners(display){
   var tailpos = shift(document.getElementById("footer"), false, true);
 
   var ret = function(x) { headpos(x); tailpos(x); };
-  ret(display ? 1 : 0);
+  ret(display);
   return ret;
 }
 

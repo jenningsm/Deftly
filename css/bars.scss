@@ -16,6 +16,14 @@
   z-index: 10;
 }
 
+#header {
+  transform: translate3d(0, -100%, 0);
+}
+
+#footer {
+  transform: translate3d(0, 100%, 0);
+}
+
 #title {
 //  text-shadow: 0em 0em .05em #c0c0c0;
   line-height: .9em;

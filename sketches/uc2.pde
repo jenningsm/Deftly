@@ -36,19 +36,26 @@ var height;
 
 Boolean begun = false;
 
+function goMessage(e){
+  if(e === undefined || e.data === "begin"){
+    begin();
+    begun = true;
+    
+    if(e !== undefined){
+      window.removeEventListener("message", goMessage);
+    }
+  }
+}
+
 void setup(){
 
   noLoop();
-  function goMessage(e){
-    if(e.data === "begin"){
-      window.removeEventListener("message", goMessage);
-      begin();
-      begun = true;
-    }
+
+  if(parent.sketchesBegun['tranquility']){
+    goMessage();
+  } else {
+    window.addEventListener("message", goMessage);
   }
-
-  window.addEventListener("message", goMessage);
-
 }
 
 void begin(){

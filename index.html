@@ -13,7 +13,7 @@
     <div class="bar" id="header">
       <div id="headeropen">
         <span class="sidetext" id="works" onclick="menu(-1, .035);">SKETCHES</span>
-        <span class="sidetext" id="about" onclick="toScene('about');">ABOUT</span>
+        <span class="sidetext" id="about" onclick="toScene('about', 0);">ABOUT</span>
         <span class="centertext" id="title">DEFTLY</span>
       </div>
     </div>
@@ -26,9 +26,9 @@
         <div id="menuborder"></div>
         <div id="menutext">
           <div class="dummyblock"></div>
-          <div class="menublock"><span onclick="toScene('electrodynamics')">Electrodynamics</span></div>
-          <div class="menublock"><span onclick="toScene('tranquility')">Tranquility</span></div>
-          <div class="menublock"><span onclick="toScene('geometries')">Geometries</span></div>
+          <div class="menublock"><span onclick="toScene('electrodynamics', 0)">Electrodynamics</span></div>
+          <div class="menublock"><span onclick="toScene('tranquility', 0)">Tranquility</span></div>
+          <div class="menublock"><span onclick="toScene('geometries', 0)">Geometries</span></div>
           <div class="dummyblock"></div>
         </div>
         <div id="menuline"></div>
@@ -45,7 +45,7 @@
           <div id="rightbar" onclick="nextImage();" class="sidebar">&#10093;</div>
         </div>
         <div class="pagefooter stripe">
-          <span class="page-footer-text" onclick="history.back()">BACK</span>
+          <span class="page-footer-text" onclick="toScene('index', 1)">BACK</span>
         </div>
       </div>
 
@@ -74,14 +74,14 @@
           </div>
         </div>
         <div class="pagefooter stripe">
-          <span class="page-footer-text" onclick="history.back()">BACK</span>
+          <span class="page-footer-text" onclick="toScene('index', 1)">BACK</span>
         </div>
       </div>
     </div>
 
     <div class="bar" id="footer">
       <span class="centertext bottomtext" id="open">GENERATIVE SKETCHES</span>
-      <span class="centertext bottomtext" id="back" onclick="history.back()">BACK</span>
+      <span class="centertext bottomtext" id="back" onclick="toScene('index', 1)">BACK</span>
     </div>
 
     <div id="spinner">
@@ -106,5 +106,6 @@
   <script src="js/pageinterface.js"></script>
   <script src="js/geometries.js"></script>
   <script src="js/display.js"></script>
+  <script src="js/begin.js"></script>
 </body>
 </html>

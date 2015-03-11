@@ -1,4 +1,14 @@
 
+
+var startScene;
+var mypath = window.location.pathname.split('/');
+if(!(mypath[mypath.length-1] in {'about' : '', 'tranquility' : '', 'electrodynamics' : '', 'geometries' : ''})){
+  startScene = 'index';
+} else {
+  startScene = mypath[mypath.length-1];
+}
+
+
 var m = mover(menuBar(false), 0);
 var menuPos = 0;
 
@@ -18,7 +28,14 @@ function menu(target, speed, next){
 
 
 var notYetOpened = true;
-var g = mover(fullPage("geometries", false), 0);
+var g;
+
+if(startScene === 'geometries'){
+  notYetOpened = false;
+  g = mover(fullPage('geometries', true), 1);
+} else {
+  g = mover(fullPage("geometries", false), 0);
+}
 
 function geometries(target, motion, speed, next){
 
@@ -43,9 +60,16 @@ function geometries(target, motion, speed, next){
 
 ////////////////
 
+var s = (startScene === 'index' ? 1 : 0);
 
-var bottomOpen = mover(opacity(document.getElementById("open")), 1);
-var bottomBack = mover(opacity(document.getElementById("back")), 0);
+var bo = opacity(document.getElementById("open"));
+var bb = opacity(document.getElementById("back"));
+
+bo(s);
+bb((s+1) % 2);
+
+var bottomOpen = mover(bo, s);
+var bottomBack = mover(bb, (s + 1) % 2);
 
 var bottomText = function(target, motion, speed, next){
   if(target > .5){
@@ -58,9 +82,23 @@ var bottomText = function(target, motion, speed, next){
 
 ///////////////
 
+var isDisp = (startScene === 'tranquility' || startScene === 'electrodynamics');
 
-var banner = mover(banners(true), 1);
-var about = mover(fullPage("aboutpage", false), 0);
-var titleText = mover(opacity(document.getElementById("headeropen")), 1);
-var disp = mover(display(false), 0);
+var bannerPos = 0;
+if(startScene === 'index'){
+  bannerPos = 1;
+} else if(isDisp){
+  bannerPos = .5;
+}
+
+var banner = mover(banners(bannerPos), bannerPos);
+var about = mover(fullPage("aboutpage", startScene === 'about'), (startScene === 'about' ? 1 : 0));
+
+var tt = opacity(document.getElementById('headeropen'));
+tt(isDisp ? 0 : 1);
+var titleText = mover(tt, (isDisp ? 0 : 1));
+var disp = mover(display(isDisp), (isDisp ? 1 : 0));
+
+
+/////////////////
 

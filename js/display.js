@@ -1,4 +1,7 @@
 
+
+var sketchesBegun = {"tranquility" : false, "electrodynamics" : false};
+
 var sketchMap = {"tranquility" : "uncontext1.html", "electrodynamics" : "uncontext2.html"};
 
 /* load display sequence:
@@ -16,7 +19,7 @@ var stopSpinner = null;
 
 function loadDisplay(sketch){
   var spot = document.getElementById("sketchspot"); 
-  spot.style.opacity = 0;
+//  spot.style.opacity = 0;
   spot.style.display = "inline";
   var iframe = document.createElement("iframe");
 
@@ -34,25 +37,29 @@ function loadDisplay(sketch){
     function sketchLoaded(e){
       if(e.data === sketch){
         window.removeEventListener("message", sketchLoaded);
+        sketchesBegun[sketch] = false;
         stopSpinner(.05, next);
       }
     }
 
-    var w = iframe.contentWindow || iframe;
-    if(w.postMessage){
-      function begin(){
-        window.addEventListener("message", sketchLoaded);
+
+    function begin(){
+      window.addEventListener("message", sketchLoaded);
+      var w = iframe.contentWindow || iframe;
+      if(w.postMessage){      
+        sketchesBegun[sketch] = true;
         w.postMessage("begin", "*");
-      }
-      if(iframeloaded){
-        begin();
       } else {
-        iframe.addEventListener('load', begin);
+        stopSpinner(.05, function() { next(1) });
       }
-    } else {
-      stopSpinner(.05, function() { next(1) });
     }
- //   setTimeout(function() { w.postMessage("begin", "*"); }, 2000);
+
+    if(iframeloaded){
+      begin();
+    } else {
+      iframe.addEventListener('load', begin);
+    }
+
   }
 
   return beginSketch;

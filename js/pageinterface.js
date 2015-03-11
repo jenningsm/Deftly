@@ -1,18 +1,19 @@
 
-var closeFunc = null;
+var last = null;
 
 function close(next){
-  if(closeFunc === null){
-    if(next !== undefined && next !== null){
-      next();
-    }
+  if(last === null){
+    riv(next);
   } else {
-    var a = closeFunc;
-    closeFunc = null;
+    var a = closes[last];
+    last = null;
     a(next);
   }
 }
 
+function initClose(scene){
+  last = scene;
+}
 
 var scenes = {};
 scenes.index = function(next) { next() };
@@ -21,19 +22,29 @@ scenes.geometries = function(next) { openPage('geometries', next) };
 scenes.tranquility = function(next) { openDisplay('tranquility', next) };
 scenes.electrodynamics = function(next) { openDisplay('electrodynamics', next) };
 
+var closes = {};
+closes.index = function(next) { next() };
+closes.about = function(next) { closePage('about', next) };
+closes.geometries = function(next) { closePage('geometries', next) };
+closes.tranquility = function(next) { closeDisplay(next) };
+closes.electrodynamics = function(next) { closeDisplay(next) };
 
 var nextScene = null;
 function switchScenes(scene, next){
-  sequence([close, scenes[scene]], next);
+  function newLast(next){
+    last = scene;
+    next();
+  }
+  sequence([close, newLast, scenes[scene]], next);
 }
 
 var root = '/ws';
 
-var locked = false;
+var locks = [false, false];
 var first = true;
-function toScene(scene, next){
-  if(!locked){
-    locked = true;
+function toScene(scene, channel,  next){
+  if(!locks[channel]){
+    locks[channel] = true;
     if(first){
       history.replaceState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
       first = false;
@@ -41,7 +52,7 @@ function toScene(scene, next){
       history.pushState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
     }
     function chainEnd(s){
-      locked = false;
+      locks[channel] = false;
       if(validFunc(next)){
         next(s);
       }
@@ -50,7 +61,7 @@ function toScene(scene, next){
   }
 }
 
-toScene('index');
+//toScene('index');
 
 function onPopState(e){
   switchScenes(e.state.scene);
@@ -64,7 +75,6 @@ window.addEventListener('popstate', onPopState);
 var pages = {'about' : about, 'geometries' : geometries};
 
 function openPage(page, next){
-  closeFunc = function(n) { closePage(page, n) };
 
   var seq = [];
   seq.push(partial(banner, 0, nwtMotion(1.2, 0), .025));
@@ -88,7 +98,6 @@ function closePage(page, next){
 var speedScale = 1;
 
 function openDisplay(sketch, next){
-  closeFunc = closeDisplay; 
 
   var showDisplay = loadDisplay(sketch);
  
@@ -111,3 +120,4 @@ function closeDisplay(next){
   }
   sequence([partial(disp, 0, uniformMotion(), .04), removeDisplay, moveBanners], next);
 }
+

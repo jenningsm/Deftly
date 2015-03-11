@@ -50,7 +50,7 @@ function geometriesMover(scene){
 }
 
 function bottomTextMover(scene){
-  var s = (scene === 'tranquility' || scene === 'geometries' ? 0 : 1);
+  var s = (scene === 'tranquility' || scene === 'electrodynamics' ? 0 : 1);
   
   var bo = opacity(document.getElementById("open"));
   var bb = opacity(document.getElementById("back"));

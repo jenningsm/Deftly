@@ -41,16 +41,10 @@ function switchScenes(scene, next){
 var root = '/ws';
 
 var locks = [false, false];
-var first = true;
 function toScene(scene, channel,  next){
   if(!locks[channel]){
     locks[channel] = true;
-    if(first){
-      history.replaceState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
-      first = false;
-    } else {
-      history.pushState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
-    }
+    history.pushState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
     function chainEnd(s){
       locks[channel] = false;
       if(validFunc(next)){

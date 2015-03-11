@@ -31,11 +31,9 @@ function mover(aggregate, pos){
         }
       }
       requestAnimationFrame(move);
-//      return speed;
     } else {
       if(next !== undefined)
         next();
-//      return 0;
     }
   }
 }

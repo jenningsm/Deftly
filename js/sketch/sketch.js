@@ -10,10 +10,6 @@ function setup(){
     return Math.max(width, height);
   }
 
-//  var height = window.screen.availHeight;
-//  var width = window.screen.availWidth;
-//  var width = window.innerWidth;
-//  var height = window.innerHeight;
   var dim = getDim();
   cvs = createCanvas(dim, dim);
   cvs.parent("sketchpad");
@@ -33,9 +29,7 @@ function setup(){
     var dist = (.3 + (num - i) / (num * 1.5)) * standard;
     dist = Math.pow(dist, pow);
     var rad = maxRad / (1.5 + dist);
-    //var radWidth = Math.sqrt(2 * dim * dim) * .12 / (1 + dist);
     var radWidth = Math.pow(2 * dim * dim, .25) * 6 / (1 + dist);
-    //radWidth *= radWidth * dist / (rad + (radWidth / 2) + dist);
     var rand = Math.random();
     var shade = Math.random() * 224 + 32;
     var colors = [shade, shade, shade, 160];
@@ -64,18 +58,5 @@ function setup(){
 
   window.addEventListener('resize', onResize);
 
-/*
-  function stop(){
-    stopBackSpinner(.05, fadeIn);
-  }
- 
-  setTimeout(stop, 3000);
-*/
-/*  var pcanvas = document.getElementById("defaultCanvas");
-  var imgdata = pcanvas.getContext("2d").getImageData(0, 0, pcanvas.width, pcanvas.height);
-  document.getElementById("backcanvas").getContext("2d").putImageData(imgdata, 0, 0);
-  noCanvas();*/
-  //document.getElementById("sketchpad").removeChild(document.getElementById("defaultCanvas"));
-  
 }
 

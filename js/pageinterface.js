@@ -29,7 +29,6 @@ closes.geometries = function(next) { closePage('geometries', next) };
 closes.tranquility = function(next) { closeDisplay(next) };
 closes.electrodynamics = function(next) { closeDisplay(next) };
 
-var nextScene = null;
 function switchScenes(scene, next){
   function newLast(next){
     last = scene;
@@ -54,8 +53,6 @@ function toScene(scene, channel,  next){
     sequence([function(n) { switchScenes(scene, n) }], chainEnd);
   }
 }
-
-//toScene('index');
 
 function onPopState(e){
   switchScenes(e.state.scene);

@@ -10,6 +10,7 @@ function nwtMotion(accel, decel, maxSpeed){
     startSpeed = maxSpeed;
   else
     startSpeed = 0;
+
   if(decel === 0)
     stopSpeed = maxSpeed;
   else 

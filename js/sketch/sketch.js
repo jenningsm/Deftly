@@ -1,8 +1,10 @@
 var arcs = [];
 
+cvs = document.getElementById("back-canvas");
+
 stopBackSpinner = spinner(false, .05);
 
-function setup(){
+function drawBackground(){
 
   function getDim(){
     var width = window.innerWidth * window.devicePixelRatio;
@@ -11,20 +13,26 @@ function setup(){
   }
 
   var dim = getDim();
-  cvs = createCanvas(dim, dim);
-  cvs.parent("sketchpad");
+  var ctx = cvs.getContext("2d");
+  cvs.width = dim;
+  cvs.height = dim;
   arcs = [];
 
   var center = [dim / 2, dim / 2];
 
-  base = 255;
-  background(base, base, base + 10);
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(dim, 0);
+  ctx.lineTo(dim, dim);
+  ctx.lineTo(0, dim);
+  ctx.closePath();
+  ctx.fillStyle = 'rgb(255, 255, 255)';
+  ctx.fill();
 
   var num = 250;
   var pow = 5;
   var standard = Math.pow(30, 1 /pow);
   var maxRad = Math.sqrt(Math.pow( window.innerWidth ,2) + Math.pow(window.innerHeight,2));
-  blendMode(BLEND);
   for(var i = 0; i < num; i++){
     var dist = (.3 + (num - i) / (num * 1.5)) * standard;
     dist = Math.pow(dist, pow);
@@ -33,11 +41,9 @@ function setup(){
     var rand = Math.random();
     var shade = Math.random() * 224 + 32;
     var colors = [shade, shade, shade, 160];
-    arcs.push(new Arc(center, Math.PI / 4 + Math.random() - .5, Math.random() * 2 * PI, radWidth, rad, .002 + (Math.random() - .5) / 25, colors));
+    arcs.push(new Arc(ctx, center, Math.PI / 4 + Math.random() - .5, Math.random() * 2 * Math.PI, radWidth, rad, .002 + (Math.random() - .5) / 25, colors));
     arcs[i].draw();
   }
-
-  noLoop();
 
   function fadeIn(){
     mover(opacity(document.getElementById("sketchpad")), 0)(1, uniformMotion(), .015);
@@ -45,14 +51,12 @@ function setup(){
 
   stopBackSpinner(.05, fadeIn);
 
-  var canvasElement = document.getElementById('defaultCanvas');
-
   function onResize(){
     var ndim = getDim();
     if(dim !== ndim){
       dim = ndim;
-      canvasElement.style.width = dim + 'px';
-      canvasElement.style.height = dim + 'px';
+      cvs.style.width = dim + 'px';
+      cvs.style.height = dim + 'px';
     }
   }
 
@@ -60,3 +64,4 @@ function setup(){
 
 }
 
+drawBackground();

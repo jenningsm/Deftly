@@ -13,7 +13,7 @@ function display(){
 function fullPage(pg){
 
   var page  = document.getElementById(pg);
-  var border  = document.getElementById("borderbox");
+  var border  = document.getElementById(pg + "border");
  
   var c = clip(page, true);
   var s = scale(border, true);

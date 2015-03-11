@@ -12,8 +12,8 @@
 
     <div class="bar" id="header">
       <div id="headeropen">
-        <span class="sidetext" id="works" onclick="menu(-1, .035);">SKETCHES</span>
-        <span class="sidetext" id="about" onclick="toScene('about', 0);">ABOUT</span>
+        <span class="sidetext" id="works-button" onclick="menu(-1, .035);">SKETCHES</span>
+        <span class="sidetext" id="about-button" onclick="toScene('about', 0);">ABOUT</span>
         <span class="centertext" id="title">DEFTLY</span>
       </div>
     </div>
@@ -36,7 +36,8 @@
     </div>
 
     <div id="page">
-      <div id="borderbox"></div>
+      <div class="borderbox" id="aboutborder"></div>
+      <div class="borderbox" id="geometriesborder"></div>
       <div class="pagecontent" id="geometries">
         <div class="pagehead stripe">GEOMETRIES</div>
         <div class="bulk">
@@ -49,7 +50,7 @@
         </div>
       </div>
 
-      <div class="pagecontent" id="aboutpage">
+      <div class="pagecontent" id="about">
         <div class="pagehead stripe">ABOUT</div>
         <div class="bulk">
           <div id="aboutcontent">

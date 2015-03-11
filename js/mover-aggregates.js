@@ -81,7 +81,7 @@ function bannersMover(scene){
 }
 
 function aboutMover(scene){
-  return mover(fullPage("aboutpage"), (scene === 'about' ? 1 : 0)); 
+  return mover(fullPage("about"), (scene === 'about' ? 1 : 0)); 
 }
 
 function titleTextMover(scene){

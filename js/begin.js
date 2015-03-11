@@ -1,10 +1,17 @@
 
+function displayBegin(sketch){
+  return function(){
+    var a = loadDisplay(sketch);
+    sequence([a, disp(1, uniformMotion(), .04)]);
+  }
+}
+
 var initializers = {
    'index' : null,
    'geometries' : beginImages,
    'about' : null,
-   'tranquility' : function() { loadDisplay('tranquility')() },
-   'electrodynamics' : function() { loadDisplay('electrodynamics')() }
+   'tranquility' : displayBegin('tranquility'),
+   'electrodynamics' : displayBegin('electrodynamics')
 }
 
 history.replaceState({'scene' : startScene }, "", startScene === 'index' ? root + '/' : root + '/' + startScene);

@@ -19,8 +19,7 @@ var stopSpinner = null;
 
 function loadDisplay(sketch){
   var spot = document.getElementById("sketchspot"); 
-//  spot.style.opacity = 0;
-  spot.style.display = "inline";
+  spot.style.display = "block";
   var iframe = document.createElement("iframe");
 
   var iframeloaded = false;

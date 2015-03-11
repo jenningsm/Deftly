@@ -90,7 +90,8 @@ function titleTextMover(scene){
 }
 
 function displayMover(scene){
-  return mover(display(), (scene === 'tranquility' || scene === 'electrodynamics'  ? 1 : 0));
+  //return mover(display(), (scene === 'tranquility' || scene === 'electrodynamics'  ? 1 : 0));
+  return mover(display(), 0);
 }
 
 /////////////////

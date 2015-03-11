@@ -1,6 +1,6 @@
 var spinElement = document.getElementById("spinner");
 
-var spinFader = mover(opacity(spinElement, 'block'), 0);
+var spinFader = mover(opacity(spinElement), 0);
 
 function spinner(shadow, speed, next){
   if(shadow){

@@ -52,7 +52,7 @@ function setImage(num, next){
 
 
 
-var imgFader = mover(opacity(imgElement, 'inline'), 1);
+var imgFader = mover(opacity(imgElement), 1);
 
 function changeImage(num, next){
 

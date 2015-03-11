@@ -17,9 +17,9 @@ function fullPage(pg){
  
   var c = clip(page, true);
   var s = scale(border, true);
-  var f = sidefade(page);
+  var f = opacity(page);
 
-  return function(x) { c(x); s(x); f(x); };
+  return function(x) { c(x); s(x); f(x * 1.5); };
 
 }
 

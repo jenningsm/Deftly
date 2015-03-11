@@ -24,12 +24,6 @@ function clip(element, orientation){
 
 }
 
-function sidefade(element){
-  return function(x){
-    element.style.opacity = x * 1.5;
-  }
-}
-
 function opacity(element, display){
   var last = -1;
   return function(x){

@@ -9,7 +9,7 @@ if(!(mypath[mypath.length-1] in {'about' : '', 'tranquility' : '', 'electrodynam
 }
 
 
-var m = mover(menuBar(false), 0);
+var m = mover(menuBar(), 0);
 var menuPos = 0;
 
 function menu(target, speed, next){
@@ -32,9 +32,9 @@ var g;
 
 if(startScene === 'geometries'){
   notYetOpened = false;
-  g = mover(fullPage('geometries', true), 1);
+  g = mover(fullPage('geometries'), 1);
 } else {
-  g = mover(fullPage("geometries", false), 0);
+  g = mover(fullPage("geometries"), 0);
 }
 
 function geometries(target, motion, speed, next){
@@ -65,9 +65,6 @@ var s = (startScene === 'index' ? 1 : 0);
 var bo = opacity(document.getElementById("open"));
 var bb = opacity(document.getElementById("back"));
 
-bo(s);
-bb((s+1) % 2);
-
 var bottomOpen = mover(bo, s);
 var bottomBack = mover(bb, (s + 1) % 2);
 
@@ -91,13 +88,12 @@ if(startScene === 'index'){
   bannerPos = .5;
 }
 
-var banner = mover(banners(bannerPos), bannerPos);
-var about = mover(fullPage("aboutpage", startScene === 'about'), (startScene === 'about' ? 1 : 0));
+var banner = mover(banners(), bannerPos);
+var about = mover(fullPage("aboutpage"), (startScene === 'about' ? 1 : 0));
 
 var tt = opacity(document.getElementById('headeropen'));
-tt(isDisp ? 0 : 1);
 var titleText = mover(tt, (isDisp ? 0 : 1));
-var disp = mover(display(isDisp), (isDisp ? 1 : 0));
+var disp = mover(display(), (isDisp ? 1 : 0));
 
 
 /////////////////

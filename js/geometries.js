@@ -101,7 +101,7 @@ function previousImage(){
 function beginImages(next){
   loadMyImage(1);
   loadMyImage(images.length - 1);
-  next();
+  riv(next);
 }
 
 imgElement.src = imagepath + images[0];

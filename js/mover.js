@@ -1,5 +1,6 @@
 function mover(aggregate, pos){
   var stopLastMotion = null;
+  aggregate(pos);
 
   return function(target, motion, speed, next){
 

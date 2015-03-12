@@ -26,19 +26,17 @@ function validFunc(func){
   return (func !== null && func !== undefined);
 }
 
-function riv(func){
+function riv(func, next){
   if(validFunc(func))
-    func();
+    func(next);
+  else if(validFunc(next))
+    next();
 }
 
 function sequence(functions, chaincb, s){
   if(functions.length !== 0 && validFunc(functions[0]) && s !== 1){
       functions[0](partial(sequence, functions.slice(1), chaincb));
   } else if(validFunc(chaincb)){
-      if(s === 1){
-        chaincb(1);
-      } else {
-        chaincb(0);
-      }
+      chaincb(0);
   }
 }

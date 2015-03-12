@@ -1,10 +1,7 @@
-var arcs = [];
 
-cvs = document.getElementById("back-canvas");
+function drawBackground(next){
 
-stopBackSpinner = spinner(false, .05);
-
-function drawBackground(){
+  stopBackSpinner = spinner(false, .05);
 
   function getDim(){
     var width = window.innerWidth * window.devicePixelRatio;
@@ -12,6 +9,7 @@ function drawBackground(){
     return Math.max(width, height);
   }
 
+  cvs = document.getElementById("back-canvas");
   var dim = getDim();
   var ctx = cvs.getContext("2d");
   cvs.width = dim;
@@ -29,6 +27,9 @@ function drawBackground(){
   ctx.fillStyle = 'rgb(255, 255, 255)';
   ctx.fill();
 
+
+  var arcs = [];
+
   var num = 250;
   var pow = 5;
   var standard = Math.pow(30, 1 /pow);
@@ -45,11 +46,12 @@ function drawBackground(){
     arcs[i].draw();
   }
 
-  function fadeIn(){
-    mover(opacity(document.getElementById("sketchpad")), 0)(1, uniformMotion(), .015);
+  function fadeIn(n){
+    mover(opacity(document.getElementById("sketchpad")), 0)(1, uniformMotion(), .015, n);
   }
 
   stopBackSpinner(.05, fadeIn);
+  sequence([partial(stopBackSpinner, .05), fadeIn], next);
 
   function onResize(){
     var ndim = getDim();
@@ -64,4 +66,3 @@ function drawBackground(){
 
 }
 
-drawBackground();

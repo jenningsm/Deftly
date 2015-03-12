@@ -16,6 +16,6 @@ var initializers = {
 
 history.replaceState({'scene' : startScene }, "", startScene === 'index' ? root + '/' : root + '/' + startScene);
 
-interrupt = sequence([initializers[startScene]], drawBackground);
+interrupt = sequence([initializers[startScene]], partial(drawBackground, startScene === 'index'));
 
 initClose(startScene);

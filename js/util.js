@@ -59,7 +59,7 @@ function sequence(functions, chaincb){
         var hold = chaincb;
         chaincb = null;
         interrupt = null;
-        hold();
+        riv(hold);
       }
     }
   }

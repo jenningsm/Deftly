@@ -1,7 +1,13 @@
 
-function drawBackground(next){
+function drawBackground(showSpinner, next){
 
-  stopBackSpinner = spinner(false, .05);
+  var stopBackSpinner;
+
+  if(showSpinner){
+    stopBackSpinner = partial(spinner(false, .05), .05);
+  } else {
+    stopBackSpinner = function(n) { n() };
+  }
 
   function getDim(){
     var width = window.innerWidth * window.devicePixelRatio;
@@ -50,7 +56,7 @@ function drawBackground(next){
     mover(opacity(document.getElementById("sketchpad")), 0)(1, uniformMotion(), .015, n);
   }
 
-  sequence([partial(stopBackSpinner, .05), fadeIn], next);
+  sequence([stopBackSpinner, fadeIn], next);
 
   function onResize(){
     var ndim = getDim();

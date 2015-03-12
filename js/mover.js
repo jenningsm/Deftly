@@ -18,8 +18,7 @@ function mover(aggregate, pos){
         if(x >= 1){
           pos = target;
           aggregate(target);
-          if(next !== undefined)
-            next();
+          riv(next);
         } else if (x >= 0) {
           pos = posHold + (target - posHold) * motion(x);
           aggregate(pos);

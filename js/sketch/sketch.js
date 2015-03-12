@@ -50,7 +50,6 @@ function drawBackground(next){
     mover(opacity(document.getElementById("sketchpad")), 0)(1, uniformMotion(), .015, n);
   }
 
-  stopBackSpinner(.05, fadeIn);
   sequence([partial(stopBackSpinner, .05), fadeIn], next);
 
   function onResize(){

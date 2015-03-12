@@ -46,10 +46,31 @@ function riv(func){
    finished executing. 
 */
 
-function sequence(functions, chaincb, s){
-  if(functions.length !== 0 && validFunc(functions[0]) && s !== 1){
-      functions[0](partial(sequence, functions.slice(1), chaincb));
-  } else if(validFunc(chaincb)){
-      chaincb();
+function sequence(functions, chaincb){
+
+  var interrupt = null;
+  var interrupted = false;
+
+  function sequenceHelper(f){
+    if(!interrupted){
+      if(f.length !== 0 && validFunc(f[0])){
+        interrupt = f[0](partial(sequenceHelper, f.slice(1)));
+      } else if(validFunc(chaincb)){
+        var hold = chaincb;
+        chaincb = null;
+        interrupt = null;
+        hold();
+      }
+    }
   }
+
+  sequenceHelper(functions);
+
+  return function(n) { 
+    var seq = [];
+    seq.push(function(next) { interrupted = true; next() });
+    seq.push(interrupt);
+    sequence(seq, function() { riv(chaincb); riv(n);});
+  };
+
 }

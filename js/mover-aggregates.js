@@ -6,14 +6,16 @@ function menuMover(scene){
   var menuPos = 0;
   
   return function(target, speed, next){
+    var interrupt;
     if(target === -1){
       var newPos = (menuPos === 0 ? 1 : 0);
-      m(newPos, newPos === 1 ? nwtMotion(0, 2) : nwtMotion(2, 0), speed, next);
+      interrupt = m(newPos, newPos === 1 ? nwtMotion(0, 2) : nwtMotion(2, 0), speed, next);
       menuPos = newPos;
     } else {
-      m(target, target === 1 ? nwtMotion(0, 2) : nwtMotion(2, 0), speed, next);
+      interrupt = m(target, target === 1 ? nwtMotion(0, 2) : nwtMotion(2, 0), speed, next);
       menuPos = target;
     }
+    return interrupt;
   }
 } 
 
@@ -45,7 +47,7 @@ function geometriesMover(scene){
       before = function(next) { next() };
     }
   
-    sequence([before, partial(g, target, motion, speed), after, next]);
+    return sequence([before, partial(g, target, motion, speed), after, next]);
   }
 }
 
@@ -60,9 +62,9 @@ function bottomTextMover(scene){
   
   return function(target, motion, speed, next){
     if(target > .5){
-      bottomBack(0, motion, speed, function() { bottomOpen(2 * (target - .5), motion, speed, next)} );
+      return bottomBack(0, motion, speed, function() { bottomOpen(2 * (target - .5), motion, speed, next)} );
     } else {
-      bottomOpen(0, motion, speed, function() { bottomBack((.5 - target) * 2, motion, speed, next)} );
+      return bottomOpen(0, motion, speed, function() { bottomBack((.5 - target) * 2, motion, speed, next)} );
     }
   }
 } 

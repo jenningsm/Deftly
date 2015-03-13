@@ -32,33 +32,24 @@ function loadDisplay(sketch){
   function beginSketch(next){
 
     stopSpinner = spinner(true, .05);
-    
-    var interrupt = function(n) { n() };
 
     function sketchLoaded(e){
       if(e.data === sketch){
-        interrupt = function(n) { n() };
         window.removeEventListener("message", sketchLoaded);
         sketchesBegun[sketch] = false;
         stopSpinner(.05, next);
-        stopSpinner = null;
       }
     }
 
 
     function begin(){
-      console.log("begin");
       window.addEventListener("message", sketchLoaded);
       var w = iframe.contentWindow || iframe;
-      sketchesBegun[sketch] = true;
-      w.postMessage("begin", "*");
-
-      interrupt = function(n){
-        window.removeEventListener("message", sketchLoaded);
-        sketchesBegun[sketch] = false;
-        var hold = stopSpinner;
-        stopSpinner = null;
-        hold(.05, n);
+      if(w.postMessage){      
+        sketchesBegun[sketch] = true;
+        w.postMessage("begin", "*");
+      } else {
+        stopSpinner(.05, function() { next(1) });
       }
     }
 
@@ -66,12 +57,8 @@ function loadDisplay(sketch){
       begin();
     } else {
       iframe.addEventListener('load', begin);
-      interrupt = function(n) { iframe.removeEventListener('load', begin); n()};
     }
 
-    return function(n){
-      sequence([interrupt, n]);
-    }
   }
 
   return beginSketch;
@@ -79,12 +66,10 @@ function loadDisplay(sketch){
 
 function removeDisplay(next){
   document.getElementById("sketchspot").removeChild(document.getElementById("displayframe"));
-  if(stopSpinner !== null){
+  if(stopSpinner != null){
     stopSpinner(.05, next);
     stopSpinner = null;
   } else {
-    next();
+    next(0);
   }
-
-  return function(n) { n() };
 }

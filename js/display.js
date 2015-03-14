@@ -41,8 +41,9 @@ function loadDisplay(sketch){
           window.removeEventListener("message", sketchLoaded);
           sketchesBegun[sketch] = false;
           if(stopSpinner !== null){
-            stopSpinner(.05, next).run();
+            var hold = stopSpinner;
             stopSpinner = null;
+            hold(.05, next).run();
           }
         }
       }
@@ -55,7 +56,9 @@ function loadDisplay(sketch){
           sketchesBegun[sketch] = true;
           w.postMessage("begin", "*");
         } else if(!cancelled){
-          stopSpinner(.05, function() { next(1) }).run();
+          var hold = stopSpinner;
+          stopSpinner = null;
+          hold(.05, function() { next(1) }).run();
         }
       }
   
@@ -72,8 +75,6 @@ function loadDisplay(sketch){
         var a = stopSpinner;
         stopSpinner = null;
         a(.05, function() { next(1) }).run();
-      } else {
-        next(1);
       }
     }
 

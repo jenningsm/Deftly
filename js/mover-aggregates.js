@@ -8,11 +8,11 @@ function menuMover(scene){
   return function(target, speed, next){
     if(target === -1){
       var newPos = (menuPos === 0 ? 1 : 0);
-      m(newPos, newPos === 1 ? nwtMotion(0, 2) : nwtMotion(2, 0), speed, next);
       menuPos = newPos;
+      return m(newPos, newPos === 1 ? nwtMotion(0, 2) : nwtMotion(2, 0), speed, next);
     } else {
-      m(target, target === 1 ? nwtMotion(0, 2) : nwtMotion(2, 0), speed, next);
       menuPos = target;
+      return m(target, target === 1 ? nwtMotion(0, 2) : nwtMotion(2, 0), speed, next);
     }
   }
 } 
@@ -35,17 +35,17 @@ function geometriesMover(scene){
       after = beginImages;
       notYetOpened = false;
     } else {
-      after = function(n) { n() };
+      after = function(n) { return nullReturn(n) };
     }
   
     var before;
     if(target === 0){
       before = closeGeometries;
     } else {
-      before = function(next) { next() };
+      before = function(next) { return nullReturn(next) };
     }
   
-    sequence([before, partial(g, target, motion, speed), after, next]);
+    return sequence([before, partial(g, target, motion, speed), after], next);
   }
 }
 
@@ -60,9 +60,13 @@ function bottomTextMover(scene){
   
   return function(target, motion, speed, next){
     if(target > .5){
-      bottomBack(0, motion, speed, function() { bottomOpen(2 * (target - .5), motion, speed, next)} );
+      var a = partial(bottomBack, 0, motion, speed);
+      var b = partial(bottomOpen, 2 * (target - .5), motion, speed);
+      return sequence([a, b], next);
     } else {
-      bottomOpen(0, motion, speed, function() { bottomBack((.5 - target) * 2, motion, speed, next)} );
+      var a = partial(bottomOpen, 0, motion, speed);
+      var b = partial(bottomBack, (.5 - target) * 2, motion, speed);
+      return sequence([a,b], next);
     }
   }
 } 

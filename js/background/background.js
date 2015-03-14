@@ -1,12 +1,11 @@
 
 function drawBackground(showSpinner, next){
-
   var stopBackSpinner;
 
   if(showSpinner){
     stopBackSpinner = partial(spinner(false, .05), .05);
   } else {
-    stopBackSpinner = function(n) { n() };
+    stopBackSpinner = nullReturn;
   }
 
   function getDim(){
@@ -53,10 +52,8 @@ function drawBackground(showSpinner, next){
   }
 
   function fadeIn(n){
-    mover(opacity(document.getElementById("sketchpad")), 0)(1, uniformMotion(), .015, n);
+    return mover(opacity(document.getElementById("sketchpad")), 0)(1, uniformMotion(), .015, n);
   }
-
-  sequence([stopBackSpinner, fadeIn], next);
 
   function onResize(){
     var ndim = getDim();
@@ -68,6 +65,8 @@ function drawBackground(showSpinner, next){
   }
 
   window.addEventListener('resize', onResize);
+
+  return sequence([stopBackSpinner, fadeIn], next);
 
 }
 

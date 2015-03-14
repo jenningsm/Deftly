@@ -19,9 +19,9 @@ var stopSpinner = null;
 
 function closeGeometries(next){
   if(stopSpinner !== null){
-    stopSpinner(.05, next);
+    return stopSpinner(.05, next);
   } else {
-    next();
+    return nullReturn(next);
   }
 }
 
@@ -33,21 +33,26 @@ function loadMyImage(num){
 
 function setImage(num, next){
 
-  stopSpinner = spinner(false, .05);
+  function run(){
+    stopSpinner = spinner(false, .02);
+  
+    function onLoaded(){
+      stopSpinner(.05, next).run();
+      stopSpinner = null;
+    }
+  
+    loadMyImage((num - 1 + images.length) % images.length);
+    loadMyImage((num + 1) % images.length);
+  
+    if(num >= 0 && num < images.length) {
+      oneTimeListener(imgElement, 'load', onLoaded);
+      imgElement.src = imagepath + images[num];
+      console.log("begun image");
+    }
+  } 
+ 
+  return nullReturn(run);
 
-  function onLoaded(){
-    stopSpinner(.05, next);
-    stopSpinner = null;
-  }
-
-  if(num >= 0 && num < images.length) {
-    oneTimeListener(imgElement, 'load', onLoaded);
-    //setTimeout(function() { imgElement.src = imagepath + images[num]; }, 2000);
-    imgElement.src = imagepath + images[num];
-  }
-
-  loadMyImage((num - 1 + images.length) % images.length);
-  loadMyImage((num + 1) % images.length);
 }
 
 
@@ -59,18 +64,18 @@ function changeImage(num, next){
   var speed = .04;
 
   function fadeIn(n){
-    imgFader(1, uniformMotion(), speed * .5, n);
+    return imgFader(1, uniformMotion(), speed * .5, n);
   }
 
   function fadeOut(n){
     if(imgElement.src !== null){
-      imgFader(0, uniformMotion(), speed, n);
+      return imgFader(0, uniformMotion(), speed, n);
     } else {
-      n();
+      return nullReturn(n);
     }
   }
 
-  sequence([fadeOut, partial(setImage, num), fadeIn, next]);
+  return sequence([fadeOut, partial(setImage, num), fadeIn, next]);
 
 }
 
@@ -85,7 +90,7 @@ function nextImage(){
     pos = 0;
   }
 
-  changeImage(pos);
+  changeImage(pos).run();
 }
 
 function previousImage(){
@@ -95,13 +100,13 @@ function previousImage(){
     pos = images.length - 1;
   }
 
-  changeImage(pos);
+  changeImage(pos).run();
 }
 
 function beginImages(next){
   loadMyImage(1);
   loadMyImage(images.length - 1);
-  riv(next);
+  return nullReturn(next);
 }
 
 imgElement.src = imagepath + images[0];

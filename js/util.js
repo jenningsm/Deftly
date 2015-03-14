@@ -1,4 +1,35 @@
 
+function combineActions(actions){
+  var ints = [];
+  var runs = [];
+
+  for(var i = 0; i < actions.length; i++){
+    ints.push(actions[i].interrupt);
+    runs.push(actions[i].run);
+  }
+
+  function interrupt(){
+    for(var i = 0; i < actions.length; i++){
+      riv(ints[i]);
+    }
+  }
+
+  function run(){
+    for(var i = 0; i < actions.length; i++){
+      riv(runs[i]);
+    }
+  }
+
+  return {'interrupt' : interrupt, 'run' : run };
+}
+
+function nullFunc(next){
+}
+
+function nullReturn(next){
+  return { 'interrupt' : nullFunc, 'run' : next };
+}
+
 window.requestAnimationFrame = window.requestAnimationFrame
  || window.mozRequestAnimationFrame
  || window.webkitRequestAnimationFrame
@@ -46,10 +77,34 @@ function riv(func){
    finished executing. 
 */
 
-function sequence(functions, chaincb, s){
-  if(functions.length !== 0 && validFunc(functions[0]) && s !== 1){
-      functions[0](partial(sequence, functions.slice(1), chaincb));
-  } else if(validFunc(chaincb)){
-      chaincb();
+var seqInterrupts = {};
+var id = 0;
+
+function sequence(functions, chaincb){
+
+  var myId = id++;
+
+  var stopped = false;
+ 
+  function sequenceHelper(f, s){
+    if(functions.length !== 0 && validFunc(f[0]) && s !== 1 && !stopped){
+        var v = f[0](partial(sequenceHelper, f.slice(1)));
+        if(v === undefined){
+          console.log(f[0]);
+        }
+        seqInterrupts[myId] = v.interrupt;
+        v.run();
+    } else if(validFunc(chaincb)){
+        chaincb();
+    }
   }
+
+  function interrupt() { 
+    stopped = true;
+    var hold = seqInterrupts[myId];
+    delete seqInterrupts[myId];
+    riv(hold);
+  };
+
+  return {'interrupt' : interrupt, 'run' : partial(sequenceHelper, functions, 0) };
 }

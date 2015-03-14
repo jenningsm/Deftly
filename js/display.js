@@ -29,47 +29,61 @@ function loadDisplay(sketch){
   iframe.setAttribute("id", "displayframe");
   spot.appendChild(iframe);
 
+  var cancelled = false;
+
   function beginSketch(next){
 
     stopSpinner = spinner(true, .05);
 
-    function sketchLoaded(e){
-      if(e.data === sketch){
-        window.removeEventListener("message", sketchLoaded);
-        sketchesBegun[sketch] = false;
-        stopSpinner(.05, next);
+    function run(){
+      function sketchLoaded(e){
+        if(e.data === sketch){
+          window.removeEventListener("message", sketchLoaded);
+          sketchesBegun[sketch] = false;
+          if(stopSpinner !== null){
+            stopSpinner(.05, next).run();
+            stopSpinner = null;
+          }
+        }
       }
-    }
-
-
-    function begin(){
-      window.addEventListener("message", sketchLoaded);
-      var w = iframe.contentWindow || iframe;
-      if(w.postMessage){      
-        sketchesBegun[sketch] = true;
-        w.postMessage("begin", "*");
+  
+  
+      function begin(){
+        var w = iframe.contentWindow || iframe;
+        if(w.postMessage && !cancelled){      
+          window.addEventListener("message", sketchLoaded);
+          sketchesBegun[sketch] = true;
+          w.postMessage("begin", "*");
+        } else if(!cancelled){
+          stopSpinner(.05, function() { next(1) }).run();
+        }
+      }
+  
+      if(iframeloaded){
+        begin();
       } else {
-        stopSpinner(.05, function() { next(1) });
+        iframe.addEventListener('load', begin);
       }
     }
 
-    if(iframeloaded){
-      begin();
-    } else {
-      iframe.addEventListener('load', begin);
+    function interrupt() {
+      cancelled = true;
+      if(stopSpinner !==  null){
+        var a = stopSpinner;
+        stopSpinner = null;
+        a(.05, function() { next(1) }).run();
+      } else {
+        next(1);
+      }
     }
 
+    return {'interrupt' : interrupt, 'run' : run };
   }
 
   return beginSketch;
 }
 
 function removeDisplay(next){
-  document.getElementById("sketchspot").removeChild(document.getElementById("displayframe"));
-  if(stopSpinner != null){
-    stopSpinner(.05, next);
-    stopSpinner = null;
-  } else {
-    next(0);
-  }
+  function run() { document.getElementById("sketchspot").removeChild(document.getElementById("displayframe")); next() }
+  return {'interrupt' : nullFunc, 'run' : run };
 }

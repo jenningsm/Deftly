@@ -2,7 +2,7 @@
 function displayBegin(sketch){
   return function(next){
     var a = loadDisplay(sketch);
-    sequence([a, partial(disp, 1, uniformMotion(), .04)], next);
+    return sequence([a, partial(disp, 1, uniformMotion(), .04)], next);
   }
 }
 
@@ -16,6 +16,8 @@ var initializers = {
 
 history.replaceState({'scene' : startScene }, "", startScene === 'index' ? root + '/' : root + '/' + startScene);
 
-sequence([initializers[startScene]], partial(drawBackground, startScene === 'index'));
+var s = sequence([initializers[startScene]], drawBackground(startScene === 'index').run);
+interrupt = s.interrupt;
+s.run();
 
 initClose(startScene);

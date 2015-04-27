@@ -79,7 +79,9 @@ function opacity(element, display){
 function scale(element, orientation){
   var d = displayHandler();
   return function(x) {
-     element.style.transform = "scale3d(" + (orientation ? x : 1) + ", " + (orientation ? 1 : x) + ", 1)";
+     var transform = "scale3d(" + (orientation ? x : 1) + ", " + (orientation ? 1 : x) + ", 1)";
+     element.style.transform = transform
+     element.style.webkitTransform = transform
      var a = d(x);
      if(a !== null){
        element.style.display = a;
@@ -91,7 +93,9 @@ function shift(element, shiftdir, orientation){
    var d = displayHandler();
    return function(x) {
      var shift = (((1 - x) * 100) * (shiftdir ? -1 : 1));
-     element.style.transform = "translate3d(" + (orientation ? "0%" : shift + "%") + ", " + (orientation ? shift + "%" : "0%") + ", 0)";
+     var transform = "translate3d(" + (orientation ? "0%" : shift + "%") + ", " + (orientation ? shift + "%" : "0%") + ", 0)";
+     element.style.transform = transform
+     element.style.webkitTransform = transform
      var a = d(x);
      if(a !== null){
        element.style.display = a;

@@ -6,7 +6,7 @@
   z-index: 10;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  @include transform(translate(-50%, -50%));
   border-radius: 2px;
 
   display: none;
@@ -48,7 +48,7 @@ $num-boxes: 5;
   width: $diameter;
   $unit: (100% / ($num-boxes + 1));
   left: $unit * ($box + 1);
-  transform: translate(-50%, -50%);
+  @include transform(translate(-50%, -50%));
   height: $diameter;
   top: 50%;
 

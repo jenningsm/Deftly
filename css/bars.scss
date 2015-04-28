@@ -17,11 +17,11 @@
 }
 
 #header {
-  transform: translate3d(0, -100%, 0);
+  @include transform(translate3d(0, -100%, 0));
 }
 
 #footer {
-  transform: translate3d(0, 100%, 0);
+  @include transform(translate3d(0, 100%, 0));
 }
 
 #title {

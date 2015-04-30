@@ -32,6 +32,9 @@ $side-bar-width: 10%;
   color: #808080;
   text-decoration: none;
 
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
   display: flex;
   align-items: center;
   justify-content: center;

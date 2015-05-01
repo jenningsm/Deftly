@@ -48,7 +48,7 @@ var locks = [false, false];
 function toScene(scene, channel,  next){
   if(!locks[channel]){
     locks[channel] = true;
-    history.pushState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
+    history.replaceState({'scene' : scene }, "", scene === 'index' ? root + '/' : root + '/' + scene);
     function chainEnd(s){
       locks[channel] = false;
       if(validFunc(next)){
